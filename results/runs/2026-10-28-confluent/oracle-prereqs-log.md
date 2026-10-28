@@ -15,3 +15,16 @@ Decision: the Confluent leg runs the LogMiner-based Oracle CDC Source Premium co
 Finding: both Confluent Oracle CDC connectors' documented setup needs SYS-level steps on a multitenant 19c; a DBA-role
 application user is not enough. The product under test from the same database vendor (Tapstate) ran
 its connection test with the DBA-role user alone.
+
+## Confluent Cloud setup log
+
+| Step | Started (UTC) | Result |
+|---|---|---|
+| CLI login, existing org with FREETRIAL400 ($400, expires 2026-11-27), payment linked to AWS Marketplace, no card | 2026-10-28T03:49:01Z | OK |
+| Existing Standard cluster `cluster_0` in aws ap-east-1 (Hong Kong), Schema Registry Essentials, one 10-CFU Flink pool | pre-existing | reused |
+| Cloud API key and Kafka API key | 2026-10-28T03:49Z | OK |
+| Oracle CDC Source Premium connector created via CLI (`OracleCdcSource`, tasks.max=1, Avro, topics `bench.<table>`) | 2026-10-28T03:52:18Z | accepted on the trial account with no sales contact; provisioning |
+
+Note: the default topic template `${databaseName}.${schemaName}.${tableName}` cannot be used with a
+common-user schema such as `C##TAPDATA` because `#` is not a legal Kafka topic character; a custom
+template is required.
