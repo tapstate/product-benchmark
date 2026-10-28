@@ -79,7 +79,7 @@ def cmd_load(args, env):
     touched, n = db.load(args.tier, args.rate, args.seconds, seed=args.seed)
     db.close()
     write_result(args, "load", {"rate": args.rate, "seconds": args.seconds, "transactions": n,
-                                "touched_orders": sorted(touched)})
+                                "touched_orders": touched})
 
 
 def cmd_lag(args, env):
@@ -129,9 +129,10 @@ def cmd_reconcile(args, env):
         ids = set(sample_ids(args.tier, args.sample)) if args.sample else set()
         for path in args.touched or []:
             with open(path) as fh:
-                ids.update(json.load(fh).get("touched_orders", []))
+                touched = json.load(fh).get("touched_orders", [])
+            ids.update(touched[-args.last:] if args.last else touched)
         order_ids = sorted(ids)
-        mode = f"sample={args.sample} touched={len(args.touched or [])} files ({len(order_ids)} orders)"
+        mode = f"sample={args.sample} touched={len(args.touched or [])} files last={args.last} ({len(order_ids)} orders)"
     expected = db.documents(order_ids)
     actual = atlas.documents(args.database, args.collection, order_ids)
     res = compare(expected, actual)
@@ -150,6 +151,35 @@ def cmd_expected(args, env):
     docs = db.documents()
     db.close()
     write_result(args, "expected", {"documents": docs})
+
+
+def cmd_watch(args, env):
+    """Record the target document count every --every seconds until it reaches --target (or stalls
+    for --stall seconds): the snapshot throughput and backlog-drain measurement."""
+    atlas = Atlas(env).open()
+    t0 = time.time()
+    samples = []
+    last_change = t0
+    last = None
+    while True:
+        n = atlas.count(args.database, args.collection)
+        now = time.time()
+        samples.append({"t": round(now - t0, 1), "at": now_iso(), "count": n})
+        print(f"  {now - t0:7.0f}s  {n}", flush=True)
+        if n != last:
+            last, last_change = n, now
+        if (args.target and n >= args.target) or (now - last_change) >= args.stall or (now - t0) >= args.timeout:
+            break
+        time.sleep(args.every)
+    rate = None
+    if len(samples) > 1 and samples[-1]["t"] > 0:
+        rate = round((samples[-1]["count"] - samples[0]["count"]) / samples[-1]["t"], 1)
+    write_result(args, "watch-" + args.label, {"target": args.target, "final_count": last, "seconds": samples[-1]["t"],
+                                                "docs_per_second": rate, "samples": samples})
+
+
+def now_iso():
+    return dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
 
 
 def cmd_perfect_sink(args, env):
@@ -190,6 +220,13 @@ def main(argv=None):
     s.add_argument("--phase", default="snapshot")
     s.add_argument("--sample", type=float, default=None, help="fraction of orders to compare, e.g. 0.01")
     s.add_argument("--touched", nargs="*", help="mutate/load result files whose touched orders to compare")
+    s.add_argument("--last", type=int, default=None, help="with --touched: only the last N touched orders per file")
+    s = sub.add_parser("watch", help="record the target count over time until it reaches --target or stalls")
+    s.add_argument("--target", type=int, default=None)
+    s.add_argument("--every", type=float, default=30)
+    s.add_argument("--stall", type=float, default=600, help="stop when the count has not changed for this long")
+    s.add_argument("--timeout", type=float, default=4 * 3600)
+    s.add_argument("--label", default="snapshot")
     sub.add_parser("expected", help="dump the expected documents")
     sub.add_parser("perfect-sink", help="write the expected documents into the target (referee self-check)")
     args = ap.parse_args(argv)
@@ -198,7 +235,7 @@ def main(argv=None):
     env = load_env(args.env)
     fn = {"seed": cmd_seed, "mutate": cmd_mutate, "delete-order": cmd_delete_order, "load": cmd_load,
           "lag": cmd_lag, "reconcile": cmd_reconcile, "expected": cmd_expected,
-          "perfect-sink": cmd_perfect_sink}[args.cmd]
+          "perfect-sink": cmd_perfect_sink, "watch": cmd_watch}[args.cmd]
     return fn(args, env) or 0
 
 

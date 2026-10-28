@@ -151,7 +151,7 @@ class Oracle:
         Returns the set of order ids touched."""
         n_cust, n_ord = F.TIERS[tier]
         r = random.Random(seed)
-        touched = set()
+        touched = []  # in touch order; duplicates removed at the end, keeping the last occurrence
         next_id = n_ord + 1_000_000 + seed * 10_000_000
         t_end = time.time() + seconds
         n = 0
@@ -166,29 +166,30 @@ class Oracle:
                                                    "ORDER_TS": dt.datetime.now(dt.timezone.utc).replace(tzinfo=None)}])
                 self.insert_rows("BENCH_LINES", [{"ORDER_ID": next_id, "LINE_NO": k, "SKU": f"SKU-L{k}", "QTY": k,
                                                   "PRICE": Decimal(r.randint(100, 9999)) / 100} for k in (1, 2)])
-                touched.add(next_id)
+                touched.append(next_id)
             elif op < 0.7:
                 oid = r.randint(1, n_ord)
                 self.execute(f"UPDATE {self.q('BENCH_ORDERS')} SET STATUS = :1 WHERE ORDER_ID = :2",
                              [r.choice(["shipped", "paid", "closed"]), oid])
-                touched.add(oid)
+                touched.append(oid)
             elif op < 0.9:
                 oid = r.randint(1, n_ord)
                 self.execute(f"DELETE FROM {self.q('BENCH_LINES')} WHERE ORDER_ID = :1 AND LINE_NO = "
                              f"(SELECT MAX(LINE_NO) FROM {self.q('BENCH_LINES')} WHERE ORDER_ID = :2)", [oid, oid])
-                touched.add(oid)
+                touched.append(oid)
             else:
                 cust = r.randint(1, n_cust)
                 self.execute(f"UPDATE {self.q('BENCH_CUSTOMERS')} SET TIER = :1 WHERE CUSTOMER_ID = :2",
                              [r.choice(F.TIER_NAMES + ["platinum"]), cust])
-                touched.update(x["ORDER_ID"] for x in self.query(
+                touched.extend(x["ORDER_ID"] for x in self.query(
                     f"SELECT ORDER_ID FROM {self.q('BENCH_ORDERS')} WHERE CUSTOMER_ID = :1", [cust]))
             self.conn.commit()
             n += 1
-            if n % (rate * 60) == 0:
-                log(f"  {n} transactions, {len(touched)} orders touched")
+            if n % int(rate * 60) == 0:
+                log(f"  {n} transactions, {len(set(touched))} orders touched")
             time.sleep(max(0.0, interval - (time.time() - t)))
-        return touched, n
+        ordered = list(dict.fromkeys(reversed(touched)))[::-1]  # unique, last touch wins the position
+        return ordered, n
 
     def marker(self, marker_id):
         """Insert one order with two lines whose id encodes the probe; returns the commit time."""
