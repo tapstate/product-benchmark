@@ -70,4 +70,18 @@ Metrics are in `metrics/load2-*.json` and `metrics/drain2-*.json` (Confluent Met
 
 ## Load 3 (200 tx/s, sink raised to 6 tasks, one per `order_doc` partition)
 
-Pending.
+The only change from load 2 is `tasks.max=6` on the Atlas sink (connector update accepted at
+11:12:09Z, six tasks RUNNING 21 s later; the update is an in-place rolling restart, no data loss).
+
+| Measure | Value |
+|---|---|
+| Window | 11:12:30Z to 11:42:32Z |
+| Transactions / achieved rate | 351,809 / 195.3 tx/s over 40 connections |
+| Orders touched | 585,615 |
+| Source connector output | about 53 k change records/min, steady |
+| Atlas sink throughput | 17 k to 33 k records/min (280 to 550 writes/s), tracking the join output |
+| Sink backlog | bounded, between 3 k and 52 k records during the load |
+| Backlog drain after the load stopped | about 2 min (backlog 6 records at 11:44Z) |
+| Reconcile after load (1,000 most recently touched + 1 % sample, 10,961 orders) | FAIL at 11:43:38Z (101 missing, 192 field diffs), PASS at 11:45:14Z, 2 min 42 s after the load ended |
+
+With six sink tasks the route sustains 200 tx/s end to end. Metrics in `metrics/load3-*.json`.
