@@ -1,0 +1,22 @@
+{
+ "at": "2026-10-28T04:42:10+00:00",
+ "vendor": "tapstate",
+ "tier": "a",
+ "samples": [
+  {
+   "marker": 1831624830,
+   "lag_seconds": 2.25
+  },
+  {
+   "marker": 1831625051,
+   "lag_seconds": 3.23
+  },
+  {
+   "marker": 1831625292,
+   "lag_seconds": 1.23
+  }
+ ],
+ "p50": 2.25,
+ "max": 3.23,
+ "timeouts": 0
+}

@@ -1,0 +1,17 @@
+{
+ "at": "2026-10-28T04:36:17+00:00",
+ "vendor": "tapstate",
+ "tier": "a",
+ "seconds": 1.4,
+ "expected": {
+  "BENCH_CUSTOMERS": 40,
+  "BENCH_ORDERS": 200,
+  "BENCH_LINES": 460
+ },
+ "counts": {
+  "BENCH_CUSTOMERS": 40,
+  "BENCH_ORDERS": 200,
+  "BENCH_LINES": 460
+ },
+ "result": "PASS"
+}

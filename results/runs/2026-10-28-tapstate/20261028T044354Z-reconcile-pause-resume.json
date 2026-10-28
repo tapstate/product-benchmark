@@ -1,0 +1,23 @@
+{
+ "at": "2026-10-28T04:43:54+00:00",
+ "vendor": "tapstate",
+ "tier": "a",
+ "phase": "pause-resume",
+ "mode": "sample=None touched=1 files (36 orders)",
+ "seconds": 0.3,
+ "source_counts": {
+  "BENCH_CUSTOMERS": 40,
+  "BENCH_ORDERS": 207,
+  "BENCH_LINES": 474
+ },
+ "target_count": 207,
+ "expected": 36,
+ "target": 36,
+ "missing": 0,
+ "extra": 0,
+ "field_diffs": 0,
+ "result": "PASS",
+ "missing_keys": [],
+ "extra_keys": [],
+ "diffs": []
+}

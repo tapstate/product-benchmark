@@ -1,0 +1,16 @@
+[
+ {
+  "connector": "oracle",
+  "http": 200,
+  "outcome": "PASSED",
+  "seconds": 3.1,
+  "failure": null
+ },
+ {
+  "connector": "mongodb-atlas",
+  "http": 200,
+  "outcome": "PASSED",
+  "seconds": 0.8,
+  "failure": null
+ }
+]
