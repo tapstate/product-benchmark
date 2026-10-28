@@ -23,6 +23,5 @@ Pipeline metrics sampled at 11:52Z, 11:55Z and 11:58Z are in `pipeline-metrics-*
 pipeline log is in `pipeline-logs-*.json`. The same pipeline completed the Tier A snapshot
 (200 orders, 40 customers) in 70 s, where this per-key cost is invisible.
 
-Reported upstream as a defect (the Tapstate repository issue is linked from the results index once
-filed). The Tier B load phase was not run for Tapstate because the snapshot never produced a
+Reported upstream as https://github.com/tapstate/tapstate/issues/900. The Tier B load phase was not run for Tapstate because the snapshot never produced a
 target to load against; it is to be rerun on a build with the fix.
