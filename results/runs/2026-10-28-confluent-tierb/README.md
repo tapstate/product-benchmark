@@ -34,6 +34,21 @@ auto-created when mining begins after the snapshot. Pre-create the topic. Pitfal
 count reaching the row count does not mean the snapshot is complete on this route; at that moment
 only 79 % of the nested lines were present. Watch the nested line total (harness `watch --lines-target`).
 
-## Load (200 tx/s for 30 min)
+## Load 1 (single connection, 30 min)
+
+The first load run used the harness's original single-connection generator, which the 50 ms round
+trip to Oracle limits to about 7 transactions per second (about four round trips per transaction).
+It is kept as the low-rate data point; load 2 below is the 200 tx/s run with the multi-connection
+generator that replaced it.
+
+| Measure | Value |
+|---|---|
+| Window | 09:17:11Z to 09:47:12Z |
+| Transactions / achieved rate | 12,707 / 7.1 tx/s (requested 200) |
+| Orders touched | 22,772 |
+| Reconcile after load (1,000 most recently touched orders + 1 % sample, 10,964 orders) | missing 0, extra 0, field diffs 0: PASS at 09:51:28Z, 4 min 16 s after the load ended (upper bound on the drain) |
+| Lag probes during the load | see the lag section below |
+
+## Load 2 (200 tx/s over worker connections, 30 min)
 
 Pending.
