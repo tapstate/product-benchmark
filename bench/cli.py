@@ -154,28 +154,44 @@ def cmd_expected(args, env):
 
 
 def cmd_watch(args, env):
-    """Record the target document count every --every seconds until it reaches --target (or stalls
-    for --stall seconds): the snapshot throughput and backlog-drain measurement."""
+    """Record the target collection every --every seconds until it is complete or stalls (--stall
+    seconds without change): the snapshot throughput and backlog-drain measurement. Completion
+    means the document count reached --target and, when --lines-target is given, the nested lines
+    summed over all documents reached it too. A parent-first pipeline emits an order before its
+    lines and customer have arrived, so the document count alone can hit the target early."""
     atlas = Atlas(env).open()
     t0 = time.time()
     samples = []
     last_change = t0
     last = None
     while True:
-        n = atlas.count(args.database, args.collection)
+        if args.lines_target:
+            shape = atlas.shape(args.database, args.collection)
+        else:
+            shape = {"docs": atlas.count(args.database, args.collection)}
         now = time.time()
-        samples.append({"t": round(now - t0, 1), "at": now_iso(), "count": n})
-        print(f"  {now - t0:7.0f}s  {n}", flush=True)
-        if n != last:
-            last, last_change = n, now
-        if (args.target and n >= args.target) or (now - last_change) >= args.stall or (now - t0) >= args.timeout:
+        samples.append({"t": round(now - t0, 1), "at": now_iso(), **shape})
+        print(f"  {now - t0:7.0f}s  " + "  ".join(f"{k}={v}" for k, v in shape.items()), flush=True)
+        key = tuple(shape.values())
+        if key != last:
+            last, last_change = key, now
+        complete = (not args.target or shape["docs"] >= args.target) and \
+                   (not args.lines_target or shape["lines"] >= args.lines_target)
+        if (args.target or args.lines_target) and complete:
+            break
+        if (now - last_change) >= args.stall or (now - t0) >= args.timeout:
             break
         time.sleep(args.every)
     rate = None
     if len(samples) > 1 and samples[-1]["t"] > 0:
-        rate = round((samples[-1]["count"] - samples[0]["count"]) / samples[-1]["t"], 1)
-    write_result(args, "watch-" + args.label, {"target": args.target, "final_count": last, "seconds": samples[-1]["t"],
-                                                "docs_per_second": rate, "samples": samples})
+        rate = round((samples[-1]["docs"] - samples[0]["docs"]) / samples[-1]["t"], 1)
+    lines_rate = None
+    if args.lines_target and len(samples) > 1 and samples[-1]["t"] > 0:
+        lines_rate = round((samples[-1]["lines"] - samples[0]["lines"]) / samples[-1]["t"], 1)
+    write_result(args, "watch-" + args.label, {"target": args.target, "lines_target": args.lines_target,
+                                                "final": samples[-1], "seconds": samples[-1]["t"],
+                                                "complete": complete, "docs_per_second": rate,
+                                                "lines_per_second": lines_rate, "samples": samples})
 
 
 def now_iso():
@@ -222,7 +238,9 @@ def main(argv=None):
     s.add_argument("--touched", nargs="*", help="mutate/load result files whose touched orders to compare")
     s.add_argument("--last", type=int, default=None, help="with --touched: only the last N touched orders per file")
     s = sub.add_parser("watch", help="record the target count over time until it reaches --target or stalls")
-    s.add_argument("--target", type=int, default=None)
+    s.add_argument("--target", type=int, default=None, help="document count that marks completion")
+    s.add_argument("--lines-target", type=int, default=None,
+                   help="total nested lines (summed over all documents) that marks completion")
     s.add_argument("--every", type=float, default=30)
     s.add_argument("--stall", type=float, default=600, help="stop when the count has not changed for this long")
     s.add_argument("--timeout", type=float, default=4 * 3600)
