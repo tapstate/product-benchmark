@@ -85,3 +85,21 @@ The only change from load 2 is `tasks.max=6` on the Atlas sink (connector update
 | Reconcile after load (1,000 most recently touched + 1 % sample, 10,961 orders) | FAIL at 11:43:38Z (101 missing, 192 field diffs), PASS at 11:45:14Z, 2 min 42 s after the load ended |
 
 With six sink tasks the route sustains 200 tx/s end to end. Metrics in `metrics/load3-*.json`.
+
+## Lag probes (one probe order every 30 s plus its own latency, 60 probes, 09:17Z to 11:51Z)
+
+One probe run spanned all three loads; the samples are split by the probe's commit time
+(encoded in its order id). A probe counts as a timeout after 600 s.
+
+| Window | Probes | p50 | p95 | max | Timeouts |
+|---|---|---|---|---|---|
+| Load 1, 7 tx/s | 20 | 61.1 s | 68.8 s | 68.8 s | 0 |
+| Load 2, 196 tx/s, 1 sink task | 3 | over 600 s | | | 2 of 3 (the third landed at 600.4 s) |
+| Drain after load 2 | 5 | | | | 3 of 5 |
+| Idle between loads (sink update window) | 8 | 60.7 s | 64.2 s | 64.2 s | 0 |
+| Load 3, 195 tx/s, 6 sink tasks | 14 | 87.1 s | 246.1 s | 246.1 s | 0 |
+| Idle after load 3 | 6 | 66.2 s | 68.7 s | 68.7 s | 0 |
+
+The idle floor on this route is about 60 s at Tier B (41 s in Tier A). Under 200 tx/s with the
+default sink the probes do not arrive within 10 minutes; with six sink tasks they arrive with a
+median of 87 s and a tail of about four minutes. File: `*-lag.json` (all samples, with marker ids).

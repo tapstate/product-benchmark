@@ -1,0 +1,250 @@
+{
+ "at": "2026-10-28T11:51:15+00:00",
+ "vendor": "confluent",
+ "tier": "b",
+ "samples": [
+  {
+   "marker": 1831790320,
+   "lag_seconds": 57.52
+  },
+  {
+   "marker": 1831791201,
+   "lag_seconds": 63.08
+  },
+  {
+   "marker": 1831792132,
+   "lag_seconds": 63.99
+  },
+  {
+   "marker": 1831793073,
+   "lag_seconds": 55.05
+  },
+  {
+   "marker": 1831793934,
+   "lag_seconds": 59.29
+  },
+  {
+   "marker": 1831794825,
+   "lag_seconds": 62.25
+  },
+  {
+   "marker": 1831795746,
+   "lag_seconds": 68.82
+  },
+  {
+   "marker": 1831796737,
+   "lag_seconds": 52.73
+  },
+  {
+   "marker": 1831797568,
+   "lag_seconds": 57.55
+  },
+  {
+   "marker": 1831798449,
+   "lag_seconds": 62.08
+  },
+  {
+   "marker": 1831799360,
+   "lag_seconds": 61.14
+  },
+  {
+   "marker": 1831800271,
+   "lag_seconds": 59.6
+  },
+  {
+   "marker": 1831801172,
+   "lag_seconds": 62.5
+  },
+  {
+   "marker": 1831802103,
+   "lag_seconds": 62.24
+  },
+  {
+   "marker": 1831803024,
+   "lag_seconds": 59.29
+  },
+  {
+   "marker": 1831803925,
+   "lag_seconds": 55.88
+  },
+  {
+   "marker": 1831804786,
+   "lag_seconds": 63.84
+  },
+  {
+   "marker": 1831805727,
+   "lag_seconds": 60.97
+  },
+  {
+   "marker": 1831806638,
+   "lag_seconds": 61.29
+  },
+  {
+   "marker": 1831807549,
+   "lag_seconds": 59.29
+  },
+  {
+   "marker": 1831808440,
+   "lag_seconds": 55.22
+  },
+  {
+   "marker": 1831809291,
+   "lag_seconds": 63.37
+  },
+  {
+   "marker": 1831810232,
+   "lag_seconds": 59.62
+  },
+  {
+   "marker": 1831811123,
+   "lag_seconds": 101.68
+  },
+  {
+   "marker": 1831812444,
+   "lag_seconds": 600.42
+  },
+  {
+   "marker": 1831818755,
+   "lag_seconds": null
+  },
+  {
+   "marker": 1831825326,
+   "lag_seconds": null
+  },
+  {
+   "marker": 1831831637,
+   "lag_seconds": null
+  },
+  {
+   "marker": 1831838038,
+   "lag_seconds": null
+  },
+  {
+   "marker": 1831844449,
+   "lag_seconds": null
+  },
+  {
+   "marker": 1831850750,
+   "lag_seconds": 75.89
+  },
+  {
+   "marker": 1831851811,
+   "lag_seconds": 41.06
+  },
+  {
+   "marker": 1831852522,
+   "lag_seconds": 61.54
+  },
+  {
+   "marker": 1831853443,
+   "lag_seconds": 60.66
+  },
+  {
+   "marker": 1831854354,
+   "lag_seconds": 60.08
+  },
+  {
+   "marker": 1831855255,
+   "lag_seconds": 58.1
+  },
+  {
+   "marker": 1831856136,
+   "lag_seconds": 61.14
+  },
+  {
+   "marker": 1831857047,
+   "lag_seconds": 59.92
+  },
+  {
+   "marker": 1831857948,
+   "lag_seconds": 64.17
+  },
+  {
+   "marker": 1831858899,
+   "lag_seconds": 56.51
+  },
+  {
+   "marker": 1831859750,
+   "lag_seconds": 98.5
+  },
+  {
+   "marker": 1831861041,
+   "lag_seconds": 246.09
+  },
+  {
+   "marker": 1831863802,
+   "lag_seconds": 95.43
+  },
+  {
+   "marker": 1831865063,
+   "lag_seconds": 87.13
+  },
+  {
+   "marker": 1831866234,
+   "lag_seconds": 68.67
+  },
+  {
+   "marker": 1831867225,
+   "lag_seconds": 87.21
+  },
+  {
+   "marker": 1831868396,
+   "lag_seconds": 54.8
+  },
+  {
+   "marker": 1831869247,
+   "lag_seconds": 171.05
+  },
+  {
+   "marker": 1831871258,
+   "lag_seconds": 110.5
+  },
+  {
+   "marker": 1831872669,
+   "lag_seconds": 86.73
+  },
+  {
+   "marker": 1831873830,
+   "lag_seconds": 55.69
+  },
+  {
+   "marker": 1831874691,
+   "lag_seconds": 67.31
+  },
+  {
+   "marker": 1831875662,
+   "lag_seconds": 61.12
+  },
+  {
+   "marker": 1831876583,
+   "lag_seconds": 65.29
+  },
+  {
+   "marker": 1831877534,
+   "lag_seconds": 67.52
+  },
+  {
+   "marker": 1831878515,
+   "lag_seconds": 68.65
+  },
+  {
+   "marker": 1831879496,
+   "lag_seconds": 51.7
+  },
+  {
+   "marker": 1831880317,
+   "lag_seconds": 66.18
+  },
+  {
+   "marker": 1831881288,
+   "lag_seconds": 57.59
+  },
+  {
+   "marker": 1831882159,
+   "lag_seconds": 59.3
+  }
+ ],
+ "p50": 61.54,
+ "max": 600.42,
+ "timeouts": 5
+}
