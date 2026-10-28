@@ -1,0 +1,23 @@
+{
+ "at": "2026-10-28T04:26:50+00:00",
+ "vendor": "confluent",
+ "tier": "a",
+ "phase": "cdc3",
+ "mode": "sample=None touched=1 files (35 orders)",
+ "seconds": 0.3,
+ "source_counts": {
+  "BENCH_CUSTOMERS": 40,
+  "BENCH_ORDERS": 206,
+  "BENCH_LINES": 472
+ },
+ "target_count": 206,
+ "expected": 35,
+ "target": 35,
+ "missing": 0,
+ "extra": 0,
+ "field_diffs": 0,
+ "result": "PASS",
+ "missing_keys": [],
+ "extra_keys": [],
+ "diffs": []
+}

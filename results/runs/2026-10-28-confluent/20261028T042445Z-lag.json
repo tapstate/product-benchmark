@@ -1,0 +1,22 @@
+{
+ "at": "2026-10-28T04:24:45+00:00",
+ "vendor": "confluent",
+ "tier": "a",
+ "samples": [
+  {
+   "marker": 1831613090,
+   "lag_seconds": 53.37
+  },
+  {
+   "marker": 1831613831,
+   "lag_seconds": 40.34
+  },
+  {
+   "marker": 1831614432,
+   "lag_seconds": 41.32
+  }
+ ],
+ "p50": 41.32,
+ "max": 53.37,
+ "timeouts": 0
+}

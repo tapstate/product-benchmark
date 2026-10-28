@@ -1,0 +1,23 @@
+{
+ "at": "2026-10-28T04:20:16+00:00",
+ "vendor": "confluent",
+ "tier": "a",
+ "phase": "snapshot",
+ "mode": "full",
+ "seconds": 0.7,
+ "source_counts": {
+  "BENCH_CUSTOMERS": 40,
+  "BENCH_ORDERS": 200,
+  "BENCH_LINES": 460
+ },
+ "target_count": 200,
+ "expected": 200,
+ "target": 200,
+ "missing": 0,
+ "extra": 0,
+ "field_diffs": 0,
+ "result": "PASS",
+ "missing_keys": [],
+ "extra_keys": [],
+ "diffs": []
+}
