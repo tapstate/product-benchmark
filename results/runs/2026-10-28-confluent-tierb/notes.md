@@ -25,3 +25,16 @@
 - The sink backlog (1.35 M records at 06:27Z) drains at the sink's write rate; projected completion about 07:35Z.
 - Default configuration kept on purpose (sink `tasks.max=1`, as in Tier A). `order_doc` has 6
   partitions, so the sink could run up to 6 tasks; a tuned variant is a separate run if time allows.
+
+## Target ceiling: the Atlas cluster is a shared tier
+
+- `getParameter` answers "not allowed in this atlas tier"; connection limit 500; sample dataset present.
+  Write probes from the benchmark host (same region, 1 ms ping): single `replaceOne` 6 to 9 ms, with
+  periodic 1-second stalls (shared-tier throttling); `bulk_write` of 500 `ReplaceOne` sustained about
+  430 ops/s. The Confluent sink's steady 330 writes/s therefore sits at the target's ceiling, not the
+  sink's. Both vendors write to the same cluster, so Tier B compares them on equal footing, but the
+  absolute snapshot throughput measures the target as much as the pipeline. A dedicated (M10 or larger)
+  cluster is required before quoting Tier B numbers as vendor throughput.
+- Write amplification still differs by vendor: Confluent's parent-first changelog wrote 3.04 records per
+  final document (3.04 M sink writes for 1 M documents); a pipeline that assembles the document before
+  writing needs about 1 M.
