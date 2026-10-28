@@ -38,3 +38,9 @@
 - Write amplification still differs by vendor: Confluent's parent-first changelog wrote 3.04 records per
   final document (3.04 M sink writes for 1 M documents); a pipeline that assembles the document before
   writing needs about 1 M.
+
+## Outcome
+
+Run abandoned at 07:02Z. The owner upgraded the Atlas cluster to a dedicated M10 and Tier B was rerun from scratch
+(`results/runs/2026-10-28-confluent-tierb`). The timings above are kept as evidence of the shared-tier ceiling only.
+M10 write probe from the benchmark host: single `replaceOne` p50 4.2 ms / p99 7.9 ms, no stalls; `bulk_write` of 500 sustained about 3,500 ops/s (8x the shared tier).
