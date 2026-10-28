@@ -145,14 +145,17 @@ class Oracle:
         self.execute(f"DELETE FROM {self.q('BENCH_ORDERS')} WHERE ORDER_ID = :1", [order_id])
         self.conn.commit()
 
-    def load(self, tier, rate, seconds, seed=1, log=print):
-        """Sustained random change mix at `rate` transactions per second.
+    def load(self, tier, rate, seconds, seed=1, log=print, worker=0, workers=1):
+        """Sustained random change mix at `rate` transactions per second on this connection.
         Mix: 40% new order with lines, 30% status update, 20% line delete, 10% customer tier update.
-        Returns the set of order ids touched."""
+        One connection is bound by the round trip to Oracle (about 4 round trips per transaction),
+        so a high rate is spread over `workers` connections, each running its share of the rate with
+        its own id range and random stream. Returns [(commit_time, order_id), ...] in touch order and
+        the transaction count."""
         n_cust, n_ord = F.TIERS[tier]
-        r = random.Random(seed)
-        touched = []  # in touch order; duplicates removed at the end, keeping the last occurrence
-        next_id = n_ord + 1_000_000 + seed * 10_000_000
+        r = random.Random(seed * 1000 + worker)
+        touched = []  # (time, order id) in touch order; duplicates removed by the caller, last touch wins
+        next_id = n_ord + 1_000_000 + seed * 10_000_000 + worker * 100_000
         t_end = time.time() + seconds
         n = 0
         interval = 1.0 / rate
@@ -166,30 +169,31 @@ class Oracle:
                                                    "ORDER_TS": dt.datetime.now(dt.timezone.utc).replace(tzinfo=None)}])
                 self.insert_rows("BENCH_LINES", [{"ORDER_ID": next_id, "LINE_NO": k, "SKU": f"SKU-L{k}", "QTY": k,
                                                   "PRICE": Decimal(r.randint(100, 9999)) / 100} for k in (1, 2)])
-                touched.append(next_id)
+                touched.append((time.time(), next_id))
             elif op < 0.7:
                 oid = r.randint(1, n_ord)
                 self.execute(f"UPDATE {self.q('BENCH_ORDERS')} SET STATUS = :1 WHERE ORDER_ID = :2",
                              [r.choice(["shipped", "paid", "closed"]), oid])
-                touched.append(oid)
+                touched.append((time.time(), oid))
             elif op < 0.9:
                 oid = r.randint(1, n_ord)
                 self.execute(f"DELETE FROM {self.q('BENCH_LINES')} WHERE ORDER_ID = :1 AND LINE_NO = "
                              f"(SELECT MAX(LINE_NO) FROM {self.q('BENCH_LINES')} WHERE ORDER_ID = :2)", [oid, oid])
-                touched.append(oid)
+                touched.append((time.time(), oid))
             else:
                 cust = r.randint(1, n_cust)
                 self.execute(f"UPDATE {self.q('BENCH_CUSTOMERS')} SET TIER = :1 WHERE CUSTOMER_ID = :2",
                              [r.choice(F.TIER_NAMES + ["platinum"]), cust])
-                touched.extend(x["ORDER_ID"] for x in self.query(
-                    f"SELECT ORDER_ID FROM {self.q('BENCH_ORDERS')} WHERE CUSTOMER_ID = :1", [cust]))
+                ids = [x["ORDER_ID"] for x in self.query(
+                    f"SELECT ORDER_ID FROM {self.q('BENCH_ORDERS')} WHERE CUSTOMER_ID = :1", [cust])]
+                now = time.time()
+                touched.extend((now, oid) for oid in ids)
             self.conn.commit()
             n += 1
-            if n % int(rate * 60) == 0:
-                log(f"  {n} transactions, {len(set(touched))} orders touched")
+            if worker == 0 and n % max(1, int(rate * 60)) == 0:
+                log(f"  worker 0: {n} transactions, {len(set(o for _, o in touched))} orders touched")
             time.sleep(max(0.0, interval - (time.time() - t)))
-        ordered = list(dict.fromkeys(reversed(touched)))[::-1]  # unique, last touch wins the position
-        return ordered, n
+        return touched, n
 
     def marker(self, marker_id):
         """Insert one order with two lines whose id encodes the probe; returns the commit time."""

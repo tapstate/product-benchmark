@@ -8,8 +8,10 @@ import argparse
 import datetime as dt
 import hashlib
 import json
+import math
 import os
 import sys
+import threading
 import time
 
 from . import fixture as F
@@ -75,11 +77,35 @@ def cmd_delete_order(args, env):
 
 
 def cmd_load(args, env):
-    db = Oracle(env).open()
-    touched, n = db.load(args.tier, args.rate, args.seconds, seed=args.seed)
-    db.close()
-    write_result(args, "load", {"rate": args.rate, "seconds": args.seconds, "transactions": n,
-                                "touched_orders": touched})
+    """Sustained change load spread over worker connections (one connection sustains only a few
+    transactions per second against a remote Oracle). Touched order ids are merged across workers
+    in commit order, unique, last touch wins the position, so --last N on reconcile means the N
+    most recently touched orders."""
+    workers = args.workers or min(64, max(1, math.ceil(args.rate / 5)))
+    per_worker = args.rate / workers
+    results = [None] * workers
+    t0 = time.time()
+
+    def run(i):
+        db = Oracle(env).open()
+        try:
+            results[i] = db.load(args.tier, per_worker, args.seconds, seed=args.seed, worker=i, workers=workers)
+        finally:
+            db.close()
+
+    threads = [threading.Thread(target=run, args=(i,), daemon=True) for i in range(workers)]
+    for t in threads:
+        t.start()
+    for t in threads:
+        t.join()
+    elapsed = time.time() - t0
+    pairs = sorted((pair for r in results if r for pair in r[0]), key=lambda x: x[0])
+    n = sum(r[1] for r in results if r)
+    touched = list(dict.fromkeys(oid for _, oid in reversed(pairs)))[::-1]
+    achieved = round(n / elapsed, 1) if elapsed else None
+    print(f"  {n} transactions in {elapsed:.0f}s over {workers} workers ({achieved} tx/s), {len(touched)} orders touched")
+    write_result(args, "load", {"rate": args.rate, "seconds": args.seconds, "workers": workers,
+                                "transactions": n, "achieved_rate": achieved, "touched_orders": touched})
 
 
 def cmd_lag(args, env):
@@ -227,6 +253,8 @@ def main(argv=None):
     s.add_argument("--rate", type=float, default=200)
     s.add_argument("--seconds", type=int, default=1800)
     s.add_argument("--seed", type=int, default=1)
+    s.add_argument("--workers", type=int, default=None,
+                   help="connections to spread the rate over (default: one per 5 tx/s, at most 64)")
     s = sub.add_parser("lag", help="probe orders: commit-to-correct-document delay")
     s.add_argument("--samples", type=int, default=5)
     s.add_argument("--interval", type=float, default=30)
