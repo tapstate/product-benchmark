@@ -165,7 +165,7 @@ def cmd_watch(args, env):
     last_change = t0
     last = None
     while True:
-        if args.lines_target:
+        if args.lines_target or args.shape:
             shape = atlas.shape(args.database, args.collection)
         else:
             shape = {"docs": atlas.count(args.database, args.collection)}
@@ -241,6 +241,9 @@ def main(argv=None):
     s.add_argument("--target", type=int, default=None, help="document count that marks completion")
     s.add_argument("--lines-target", type=int, default=None,
                    help="total nested lines (summed over all documents) that marks completion")
+    s.add_argument("--shape", action="store_true",
+                   help="track nested lines and customers as well as the count, so a drain stalls only when "
+                        "the whole collection shape has stopped changing")
     s.add_argument("--every", type=float, default=30)
     s.add_argument("--stall", type=float, default=600, help="stop when the count has not changed for this long")
     s.add_argument("--timeout", type=float, default=4 * 3600)
