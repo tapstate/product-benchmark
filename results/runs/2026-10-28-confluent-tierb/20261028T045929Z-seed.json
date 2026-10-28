@@ -1,0 +1,17 @@
+{
+ "at": "2026-10-28T04:59:29+00:00",
+ "vendor": "confluent",
+ "tier": "b",
+ "seconds": 65.9,
+ "expected": {
+  "BENCH_CUSTOMERS": 100000,
+  "BENCH_ORDERS": 1000000,
+  "BENCH_LINES": 2300000
+ },
+ "counts": {
+  "BENCH_CUSTOMERS": 100000,
+  "BENCH_ORDERS": 1000000,
+  "BENCH_LINES": 2300000
+ },
+ "result": "PASS"
+}

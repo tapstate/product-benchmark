@@ -1,0 +1,374 @@
+{
+ "at": "2026-10-28T06:25:11+00:00",
+ "vendor": "confluent",
+ "tier": "b",
+ "phase": "snapshot",
+ "mode": "sample=0.01 touched=0 files last=None (9970 orders)",
+ "seconds": 33.9,
+ "source_counts": {
+  "BENCH_CUSTOMERS": 100000,
+  "BENCH_ORDERS": 1000000,
+  "BENCH_LINES": 2300000
+ },
+ "target_count": 999999,
+ "expected": 9970,
+ "target": 9970,
+ "missing": 0,
+ "extra": 0,
+ "field_diffs": 6343,
+ "result": "FAIL",
+ "missing_keys": [],
+ "extra_keys": [],
+ "diffs": [
+  {
+   "key": 214812,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-035', 'QTY': 1, 'PRICE': Decimal('161109.25')}]",
+   "actual": "None"
+  },
+  {
+   "key": 217474,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-019', 'QTY': 1, 'PRICE': Decimal('163105.75')}, {'LINE_NO': 2, 'SKU': 'SKU-020', 'QTY': 2, 'PRICE': Decimal('163106')}, {'LINE_NO': 3, 'SKU': 'SKU-021', 'QTY': 3, 'PRICE': Decimal('163106.25')}]",
+   "actual": "[{'LINE_NO': 3, 'SKU': 'SKU-021', 'QTY': 3, 'PRICE': Decimal128('163106.2500')}, {'LINE_NO': 2, 'SKU': 'SKU-020', 'QTY': 2, 'PRICE': Decimal128('163106.0000')}]"
+  },
+  {
+   "key": 217629,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-004', 'QTY': 1, 'PRICE': Decimal('163222')}, {'LINE_NO': 2, 'SKU': 'SKU-005', 'QTY': 2, 'PRICE': Decimal('163222.25')}]",
+   "actual": "[{'LINE_NO': 1, 'SKU': 'SKU-004', 'QTY': 1, 'PRICE': Decimal128('163222.0000')}]"
+  },
+  {
+   "key": 218287,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-010', 'QTY': 1, 'PRICE': Decimal('163715.5')}, {'LINE_NO': 2, 'SKU': 'SKU-011', 'QTY': 2, 'PRICE': Decimal('163715.75')}, {'LINE_NO': 3, 'SKU': 'SKU-012', 'QTY': 3, 'PRICE': Decimal('163716')}, {'LINE_NO': 4, 'SKU': 'SKU-013', 'QTY': 4, 'PRICE': Decimal('163716.25')}]",
+   "actual": "[{'LINE_NO': 4, 'SKU': 'SKU-013', 'QTY': 4, 'PRICE': Decimal128('163716.2500')}, {'LINE_NO': 1, 'SKU': 'SKU-010', 'QTY': 1, 'PRICE': Decimal128('163715.5000')}, {'LINE_NO': 3, 'SKU': 'SKU-012', 'QTY': 3, 'PRICE': Decimal128('163716.0000')}]"
+  },
+  {
+   "key": 219643,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-002', 'QTY': 1, 'PRICE': Decimal('164732.5')}, {'LINE_NO': 2, 'SKU': 'SKU-003', 'QTY': 2, 'PRICE': Decimal('164732.75')}, {'LINE_NO': 3, 'SKU': 'SKU-004', 'QTY': 3, 'PRICE': Decimal('164733')}, {'LINE_NO': 4, 'SKU': 'SKU-005', 'QTY': 4, 'PRICE': Decimal('164733.25')}]",
+   "actual": "[{'LINE_NO': 3, 'SKU': 'SKU-004', 'QTY': 3, 'PRICE': Decimal128('164733.0000')}, {'LINE_NO': 1, 'SKU': 'SKU-002', 'QTY': 1, 'PRICE': Decimal128('164732.5000')}, {'LINE_NO': 4, 'SKU': 'SKU-005', 'QTY': 4, 'PRICE': Decimal128('164733.2500')}]"
+  },
+  {
+   "key": 220206,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-043', 'QTY': 1, 'PRICE': Decimal('165154.75')}, {'LINE_NO': 2, 'SKU': 'SKU-044', 'QTY': 2, 'PRICE': Decimal('165155')}, {'LINE_NO': 3, 'SKU': 'SKU-045', 'QTY': 3, 'PRICE': Decimal('165155.25')}]",
+   "actual": "[{'LINE_NO': 1, 'SKU': 'SKU-043', 'QTY': 1, 'PRICE': Decimal128('165154.7500')}, {'LINE_NO': 3, 'SKU': 'SKU-045', 'QTY': 3, 'PRICE': Decimal128('165155.2500')}]"
+  },
+  {
+   "key": 220486,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-003', 'QTY': 1, 'PRICE': Decimal('165364.75')}, {'LINE_NO': 2, 'SKU': 'SKU-004', 'QTY': 2, 'PRICE': Decimal('165365')}, {'LINE_NO': 3, 'SKU': 'SKU-005', 'QTY': 3, 'PRICE': Decimal('165365.25')}]",
+   "actual": "[{'LINE_NO': 2, 'SKU': 'SKU-004', 'QTY': 2, 'PRICE': Decimal128('165365.0000')}, {'LINE_NO': 1, 'SKU': 'SKU-003', 'QTY': 1, 'PRICE': Decimal128('165364.7500')}]"
+  },
+  {
+   "key": 227648,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-037', 'QTY': 1, 'PRICE': Decimal('170736.25')}]",
+   "actual": "None"
+  },
+  {
+   "key": 227768,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-027', 'QTY': 1, 'PRICE': Decimal('170826.25')}]",
+   "actual": "None"
+  },
+  {
+   "key": 228655,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-036', 'QTY': 1, 'PRICE': Decimal('171491.5')}, {'LINE_NO': 2, 'SKU': 'SKU-037', 'QTY': 2, 'PRICE': Decimal('171491.75')}, {'LINE_NO': 3, 'SKU': 'SKU-038', 'QTY': 3, 'PRICE': Decimal('171492')}, {'LINE_NO': 4, 'SKU': 'SKU-039', 'QTY': 4, 'PRICE': Decimal('171492.25')}]",
+   "actual": "[{'LINE_NO': 4, 'SKU': 'SKU-039', 'QTY': 4, 'PRICE': Decimal128('171492.2500')}, {'LINE_NO': 1, 'SKU': 'SKU-036', 'QTY': 1, 'PRICE': Decimal128('171491.5000')}, {'LINE_NO': 3, 'SKU': 'SKU-038', 'QTY': 3, 'PRICE': Decimal128('171492.0000')}]"
+  },
+  {
+   "key": 229465,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-006', 'QTY': 1, 'PRICE': Decimal('172099')}, {'LINE_NO': 2, 'SKU': 'SKU-007', 'QTY': 2, 'PRICE': Decimal('172099.25')}]",
+   "actual": "[{'LINE_NO': 2, 'SKU': 'SKU-007', 'QTY': 2, 'PRICE': Decimal128('172099.2500')}]"
+  },
+  {
+   "key": 229753,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-022', 'QTY': 1, 'PRICE': Decimal('172315')}, {'LINE_NO': 2, 'SKU': 'SKU-023', 'QTY': 2, 'PRICE': Decimal('172315.25')}]",
+   "actual": "[{'LINE_NO': 1, 'SKU': 'SKU-022', 'QTY': 1, 'PRICE': Decimal128('172315.0000')}]"
+  },
+  {
+   "key": 230224,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-019', 'QTY': 1, 'PRICE': Decimal('172668.25')}]",
+   "actual": "None"
+  },
+  {
+   "key": 230497,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-030', 'QTY': 1, 'PRICE': Decimal('172873')}, {'LINE_NO': 2, 'SKU': 'SKU-031', 'QTY': 2, 'PRICE': Decimal('172873.25')}]",
+   "actual": "[{'LINE_NO': 1, 'SKU': 'SKU-030', 'QTY': 1, 'PRICE': Decimal128('172873.0000')}]"
+  },
+  {
+   "key": 230502,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-015', 'QTY': 1, 'PRICE': Decimal('172876.75')}, {'LINE_NO': 2, 'SKU': 'SKU-016', 'QTY': 2, 'PRICE': Decimal('172877')}, {'LINE_NO': 3, 'SKU': 'SKU-017', 'QTY': 3, 'PRICE': Decimal('172877.25')}]",
+   "actual": "[{'LINE_NO': 2, 'SKU': 'SKU-016', 'QTY': 2, 'PRICE': Decimal128('172877.0000')}, {'LINE_NO': 1, 'SKU': 'SKU-015', 'QTY': 1, 'PRICE': Decimal128('172876.7500')}]"
+  },
+  {
+   "key": 231538,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-017', 'QTY': 1, 'PRICE': Decimal('173653.75')}, {'LINE_NO': 2, 'SKU': 'SKU-018', 'QTY': 2, 'PRICE': Decimal('173654')}, {'LINE_NO': 3, 'SKU': 'SKU-019', 'QTY': 3, 'PRICE': Decimal('173654.25')}]",
+   "actual": "[{'LINE_NO': 2, 'SKU': 'SKU-018', 'QTY': 2, 'PRICE': Decimal128('173654.0000')}, {'LINE_NO': 3, 'SKU': 'SKU-019', 'QTY': 3, 'PRICE': Decimal128('173654.2500')}]"
+  },
+  {
+   "key": 231913,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-042', 'QTY': 1, 'PRICE': Decimal('173935')}, {'LINE_NO': 2, 'SKU': 'SKU-043', 'QTY': 2, 'PRICE': Decimal('173935.25')}]",
+   "actual": "[{'LINE_NO': 1, 'SKU': 'SKU-042', 'QTY': 1, 'PRICE': Decimal128('173935.0000')}]"
+  },
+  {
+   "key": 232193,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-002', 'QTY': 1, 'PRICE': Decimal('174145')}, {'LINE_NO': 2, 'SKU': 'SKU-003', 'QTY': 2, 'PRICE': Decimal('174145.25')}]",
+   "actual": "[{'LINE_NO': 1, 'SKU': 'SKU-002', 'QTY': 1, 'PRICE': Decimal128('174145.0000')}]"
+  },
+  {
+   "key": 232883,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-032', 'QTY': 1, 'PRICE': Decimal('174662.5')}, {'LINE_NO': 2, 'SKU': 'SKU-033', 'QTY': 2, 'PRICE': Decimal('174662.75')}, {'LINE_NO': 3, 'SKU': 'SKU-034', 'QTY': 3, 'PRICE': Decimal('174663')}, {'LINE_NO': 4, 'SKU': 'SKU-035', 'QTY': 4, 'PRICE': Decimal('174663.25')}]",
+   "actual": "[{'LINE_NO': 2, 'SKU': 'SKU-033', 'QTY': 2, 'PRICE': Decimal128('174662.7500')}, {'LINE_NO': 4, 'SKU': 'SKU-035', 'QTY': 4, 'PRICE': Decimal128('174663.2500')}, {'LINE_NO': 1, 'SKU': 'SKU-032', 'QTY': 1, 'PRICE': Decimal128('174662.5000')}]"
+  },
+  {
+   "key": 233626,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-033', 'QTY': 1, 'PRICE': Decimal('175219.75')}, {'LINE_NO': 2, 'SKU': 'SKU-034', 'QTY': 2, 'PRICE': Decimal('175220')}, {'LINE_NO': 3, 'SKU': 'SKU-035', 'QTY': 3, 'PRICE': Decimal('175220.25')}]",
+   "actual": "[{'LINE_NO': 2, 'SKU': 'SKU-034', 'QTY': 2, 'PRICE': Decimal128('175220.0000')}, {'LINE_NO': 3, 'SKU': 'SKU-035', 'QTY': 3, 'PRICE': Decimal128('175220.2500')}]"
+  },
+  {
+   "key": 234114,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-049', 'QTY': 1, 'PRICE': Decimal('175585.75')}, {'LINE_NO': 2, 'SKU': 'SKU-000', 'QTY': 2, 'PRICE': Decimal('175586')}, {'LINE_NO': 3, 'SKU': 'SKU-001', 'QTY': 3, 'PRICE': Decimal('175586.25')}]",
+   "actual": "[{'LINE_NO': 1, 'SKU': 'SKU-049', 'QTY': 1, 'PRICE': Decimal128('175585.7500')}, {'LINE_NO': 2, 'SKU': 'SKU-000', 'QTY': 2, 'PRICE': Decimal128('175586.0000')}]"
+  },
+  {
+   "key": 234523,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-012', 'QTY': 1, 'PRICE': Decimal('175892.5')}, {'LINE_NO': 2, 'SKU': 'SKU-013', 'QTY': 2, 'PRICE': Decimal('175892.75')}, {'LINE_NO': 3, 'SKU': 'SKU-014', 'QTY': 3, 'PRICE': Decimal('175893')}, {'LINE_NO': 4, 'SKU': 'SKU-015', 'QTY': 4, 'PRICE': Decimal('175893.25')}]",
+   "actual": "[{'LINE_NO': 3, 'SKU': 'SKU-014', 'QTY': 3, 'PRICE': Decimal128('175893.0000')}, {'LINE_NO': 4, 'SKU': 'SKU-015', 'QTY': 4, 'PRICE': Decimal128('175893.2500')}]"
+  },
+  {
+   "key": 235191,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-038', 'QTY': 1, 'PRICE': Decimal('176393.5')}, {'LINE_NO': 2, 'SKU': 'SKU-039', 'QTY': 2, 'PRICE': Decimal('176393.75')}, {'LINE_NO': 3, 'SKU': 'SKU-040', 'QTY': 3, 'PRICE': Decimal('176394')}, {'LINE_NO': 4, 'SKU': 'SKU-041', 'QTY': 4, 'PRICE': Decimal('176394.25')}]",
+   "actual": "[{'LINE_NO': 2, 'SKU': 'SKU-039', 'QTY': 2, 'PRICE': Decimal128('176393.7500')}, {'LINE_NO': 1, 'SKU': 'SKU-038', 'QTY': 1, 'PRICE': Decimal128('176393.5000')}, {'LINE_NO': 3, 'SKU': 'SKU-040', 'QTY': 3, 'PRICE': Decimal128('176394.0000')}]"
+  },
+  {
+   "key": 235424,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-019', 'QTY': 1, 'PRICE': Decimal('176568.25')}]",
+   "actual": "None"
+  },
+  {
+   "key": 237951,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-008', 'QTY': 1, 'PRICE': Decimal('178463.5')}, {'LINE_NO': 2, 'SKU': 'SKU-009', 'QTY': 2, 'PRICE': Decimal('178463.75')}, {'LINE_NO': 3, 'SKU': 'SKU-010', 'QTY': 3, 'PRICE': Decimal('178464')}, {'LINE_NO': 4, 'SKU': 'SKU-011', 'QTY': 4, 'PRICE': Decimal('178464.25')}]",
+   "actual": "[{'LINE_NO': 3, 'SKU': 'SKU-010', 'QTY': 3, 'PRICE': Decimal128('178464.0000')}, {'LINE_NO': 2, 'SKU': 'SKU-009', 'QTY': 2, 'PRICE': Decimal128('178463.7500')}, {'LINE_NO': 1, 'SKU': 'SKU-008', 'QTY': 1, 'PRICE': Decimal128('178463.5000')}]"
+  },
+  {
+   "key": 238001,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-008', 'QTY': 1, 'PRICE': Decimal('178501')}, {'LINE_NO': 2, 'SKU': 'SKU-009', 'QTY': 2, 'PRICE': Decimal('178501.25')}]",
+   "actual": "[{'LINE_NO': 1, 'SKU': 'SKU-008', 'QTY': 1, 'PRICE': Decimal128('178501.0000')}]"
+  },
+  {
+   "key": 238835,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-046', 'QTY': 1, 'PRICE': Decimal('179126.5')}, {'LINE_NO': 2, 'SKU': 'SKU-047', 'QTY': 2, 'PRICE': Decimal('179126.75')}, {'LINE_NO': 3, 'SKU': 'SKU-048', 'QTY': 3, 'PRICE': Decimal('179127')}, {'LINE_NO': 4, 'SKU': 'SKU-049', 'QTY': 4, 'PRICE': Decimal('179127.25')}]",
+   "actual": "[{'LINE_NO': 2, 'SKU': 'SKU-047', 'QTY': 2, 'PRICE': Decimal128('179126.7500')}, {'LINE_NO': 3, 'SKU': 'SKU-048', 'QTY': 3, 'PRICE': Decimal128('179127.0000')}, {'LINE_NO': 1, 'SKU': 'SKU-046', 'QTY': 1, 'PRICE': Decimal128('179126.5000')}]"
+  },
+  {
+   "key": 239019,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-034', 'QTY': 1, 'PRICE': Decimal('179264.5')}, {'LINE_NO': 2, 'SKU': 'SKU-035', 'QTY': 2, 'PRICE': Decimal('179264.75')}, {'LINE_NO': 3, 'SKU': 'SKU-036', 'QTY': 3, 'PRICE': Decimal('179265')}, {'LINE_NO': 4, 'SKU': 'SKU-037', 'QTY': 4, 'PRICE': Decimal('179265.25')}]",
+   "actual": "[{'LINE_NO': 3, 'SKU': 'SKU-036', 'QTY': 3, 'PRICE': Decimal128('179265.0000')}, {'LINE_NO': 1, 'SKU': 'SKU-034', 'QTY': 1, 'PRICE': Decimal128('179264.5000')}, {'LINE_NO': 4, 'SKU': 'SKU-037', 'QTY': 4, 'PRICE': Decimal128('179265.2500')}]"
+  },
+  {
+   "key": 239037,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-010', 'QTY': 1, 'PRICE': Decimal('179278')}, {'LINE_NO': 2, 'SKU': 'SKU-011', 'QTY': 2, 'PRICE': Decimal('179278.25')}]",
+   "actual": "[{'LINE_NO': 2, 'SKU': 'SKU-011', 'QTY': 2, 'PRICE': Decimal128('179278.2500')}]"
+  },
+  {
+   "key": 239438,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-017', 'QTY': 1, 'PRICE': Decimal('179578.75')}, {'LINE_NO': 2, 'SKU': 'SKU-018', 'QTY': 2, 'PRICE': Decimal('179579')}, {'LINE_NO': 3, 'SKU': 'SKU-019', 'QTY': 3, 'PRICE': Decimal('179579.25')}]",
+   "actual": "[{'LINE_NO': 1, 'SKU': 'SKU-017', 'QTY': 1, 'PRICE': Decimal128('179578.7500')}, {'LINE_NO': 3, 'SKU': 'SKU-019', 'QTY': 3, 'PRICE': Decimal128('179579.2500')}]"
+  },
+  {
+   "key": 239773,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-012', 'QTY': 1, 'PRICE': Decimal('179830')}, {'LINE_NO': 2, 'SKU': 'SKU-013', 'QTY': 2, 'PRICE': Decimal('179830.25')}]",
+   "actual": "None"
+  },
+  {
+   "key": 240271,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-048', 'QTY': 1, 'PRICE': Decimal('180203.5')}, {'LINE_NO': 2, 'SKU': 'SKU-049', 'QTY': 2, 'PRICE': Decimal('180203.75')}, {'LINE_NO': 3, 'SKU': 'SKU-000', 'QTY': 3, 'PRICE': Decimal('180204')}, {'LINE_NO': 4, 'SKU': 'SKU-001', 'QTY': 4, 'PRICE': Decimal('180204.25')}]",
+   "actual": "[{'LINE_NO': 1, 'SKU': 'SKU-048', 'QTY': 1, 'PRICE': Decimal128('180203.5000')}, {'LINE_NO': 4, 'SKU': 'SKU-001', 'QTY': 4, 'PRICE': Decimal128('180204.2500')}, {'LINE_NO': 2, 'SKU': 'SKU-049', 'QTY': 2, 'PRICE': Decimal128('180203.7500')}]"
+  },
+  {
+   "key": 241563,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-042', 'QTY': 1, 'PRICE': Decimal('181172.5')}, {'LINE_NO': 2, 'SKU': 'SKU-043', 'QTY': 2, 'PRICE': Decimal('181172.75')}, {'LINE_NO': 3, 'SKU': 'SKU-044', 'QTY': 3, 'PRICE': Decimal('181173')}, {'LINE_NO': 4, 'SKU': 'SKU-045', 'QTY': 4, 'PRICE': Decimal('181173.25')}]",
+   "actual": "[{'LINE_NO': 1, 'SKU': 'SKU-042', 'QTY': 1, 'PRICE': Decimal128('181172.5000')}, {'LINE_NO': 2, 'SKU': 'SKU-043', 'QTY': 2, 'PRICE': Decimal128('181172.7500')}]"
+  },
+  {
+   "key": 242959,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-014', 'QTY': 1, 'PRICE': Decimal('182219.5')}, {'LINE_NO': 2, 'SKU': 'SKU-015', 'QTY': 2, 'PRICE': Decimal('182219.75')}, {'LINE_NO': 3, 'SKU': 'SKU-016', 'QTY': 3, 'PRICE': Decimal('182220')}, {'LINE_NO': 4, 'SKU': 'SKU-017', 'QTY': 4, 'PRICE': Decimal('182220.25')}]",
+   "actual": "[{'LINE_NO': 2, 'SKU': 'SKU-015', 'QTY': 2, 'PRICE': Decimal128('182219.7500')}, {'LINE_NO': 1, 'SKU': 'SKU-014', 'QTY': 1, 'PRICE': Decimal128('182219.5000')}, {'LINE_NO': 4, 'SKU': 'SKU-017', 'QTY': 4, 'PRICE': Decimal128('182220.2500')}]"
+  },
+  {
+   "key": 244217,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-020', 'QTY': 1, 'PRICE': Decimal('183163')}, {'LINE_NO': 2, 'SKU': 'SKU-021', 'QTY': 2, 'PRICE': Decimal('183163.25')}]",
+   "actual": "[{'LINE_NO': 2, 'SKU': 'SKU-021', 'QTY': 2, 'PRICE': Decimal128('183163.2500')}]"
+  },
+  {
+   "key": 244717,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-020', 'QTY': 1, 'PRICE': Decimal('183538')}, {'LINE_NO': 2, 'SKU': 'SKU-021', 'QTY': 2, 'PRICE': Decimal('183538.25')}]",
+   "actual": "[{'LINE_NO': 1, 'SKU': 'SKU-020', 'QTY': 1, 'PRICE': Decimal128('183538.0000')}]"
+  },
+  {
+   "key": 244753,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-022', 'QTY': 1, 'PRICE': Decimal('183565')}, {'LINE_NO': 2, 'SKU': 'SKU-023', 'QTY': 2, 'PRICE': Decimal('183565.25')}]",
+   "actual": "[{'LINE_NO': 1, 'SKU': 'SKU-022', 'QTY': 1, 'PRICE': Decimal128('183565.0000')}]"
+  },
+  {
+   "key": 245901,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-008', 'QTY': 1, 'PRICE': Decimal('184426')}, {'LINE_NO': 2, 'SKU': 'SKU-009', 'QTY': 2, 'PRICE': Decimal('184426.25')}]",
+   "actual": "[{'LINE_NO': 2, 'SKU': 'SKU-009', 'QTY': 2, 'PRICE': Decimal128('184426.2500')}]"
+  },
+  {
+   "key": 246382,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-025', 'QTY': 1, 'PRICE': Decimal('184786.75')}, {'LINE_NO': 2, 'SKU': 'SKU-026', 'QTY': 2, 'PRICE': Decimal('184787')}, {'LINE_NO': 3, 'SKU': 'SKU-027', 'QTY': 3, 'PRICE': Decimal('184787.25')}]",
+   "actual": "[{'LINE_NO': 1, 'SKU': 'SKU-025', 'QTY': 1, 'PRICE': Decimal128('184786.7500')}, {'LINE_NO': 2, 'SKU': 'SKU-026', 'QTY': 2, 'PRICE': Decimal128('184787.0000')}]"
+  },
+  {
+   "key": 246944,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-009', 'QTY': 1, 'PRICE': Decimal('185208.25')}]",
+   "actual": "None"
+  },
+  {
+   "key": 247759,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-014', 'QTY': 1, 'PRICE': Decimal('185819.5')}, {'LINE_NO': 2, 'SKU': 'SKU-015', 'QTY': 2, 'PRICE': Decimal('185819.75')}, {'LINE_NO': 3, 'SKU': 'SKU-016', 'QTY': 3, 'PRICE': Decimal('185820')}, {'LINE_NO': 4, 'SKU': 'SKU-017', 'QTY': 4, 'PRICE': Decimal('185820.25')}]",
+   "actual": "[{'LINE_NO': 2, 'SKU': 'SKU-015', 'QTY': 2, 'PRICE': Decimal128('185819.7500')}, {'LINE_NO': 3, 'SKU': 'SKU-016', 'QTY': 3, 'PRICE': Decimal128('185820.0000')}, {'LINE_NO': 4, 'SKU': 'SKU-017', 'QTY': 4, 'PRICE': Decimal128('185820.2500')}]"
+  },
+  {
+   "key": 248306,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-043', 'QTY': 1, 'PRICE': Decimal('186229.75')}, {'LINE_NO': 2, 'SKU': 'SKU-044', 'QTY': 2, 'PRICE': Decimal('186230')}, {'LINE_NO': 3, 'SKU': 'SKU-045', 'QTY': 3, 'PRICE': Decimal('186230.25')}]",
+   "actual": "[{'LINE_NO': 1, 'SKU': 'SKU-043', 'QTY': 1, 'PRICE': Decimal128('186229.7500')}, {'LINE_NO': 2, 'SKU': 'SKU-044', 'QTY': 2, 'PRICE': Decimal128('186230.0000')}]"
+  },
+  {
+   "key": 248707,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-000', 'QTY': 1, 'PRICE': Decimal('186530.5')}, {'LINE_NO': 2, 'SKU': 'SKU-001', 'QTY': 2, 'PRICE': Decimal('186530.75')}, {'LINE_NO': 3, 'SKU': 'SKU-002', 'QTY': 3, 'PRICE': Decimal('186531')}, {'LINE_NO': 4, 'SKU': 'SKU-003', 'QTY': 4, 'PRICE': Decimal('186531.25')}]",
+   "actual": "[{'LINE_NO': 3, 'SKU': 'SKU-002', 'QTY': 3, 'PRICE': Decimal128('186531.0000')}, {'LINE_NO': 4, 'SKU': 'SKU-003', 'QTY': 4, 'PRICE': Decimal128('186531.2500')}, {'LINE_NO': 2, 'SKU': 'SKU-001', 'QTY': 2, 'PRICE': Decimal128('186530.7500')}]"
+  },
+  {
+   "key": 249608,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-007', 'QTY': 1, 'PRICE': Decimal('187206.25')}]",
+   "actual": "None"
+  },
+  {
+   "key": 249859,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-014', 'QTY': 1, 'PRICE': Decimal('187394.5')}, {'LINE_NO': 2, 'SKU': 'SKU-015', 'QTY': 2, 'PRICE': Decimal('187394.75')}, {'LINE_NO': 3, 'SKU': 'SKU-016', 'QTY': 3, 'PRICE': Decimal('187395')}, {'LINE_NO': 4, 'SKU': 'SKU-017', 'QTY': 4, 'PRICE': Decimal('187395.25')}]",
+   "actual": "[{'LINE_NO': 4, 'SKU': 'SKU-017', 'QTY': 4, 'PRICE': Decimal128('187395.2500')}, {'LINE_NO': 3, 'SKU': 'SKU-016', 'QTY': 3, 'PRICE': Decimal128('187395.0000')}, {'LINE_NO': 2, 'SKU': 'SKU-015', 'QTY': 2, 'PRICE': Decimal128('187394.7500')}]"
+  },
+  {
+   "key": 250154,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-029', 'QTY': 1, 'PRICE': Decimal('187615.75')}, {'LINE_NO': 2, 'SKU': 'SKU-030', 'QTY': 2, 'PRICE': Decimal('187616')}, {'LINE_NO': 3, 'SKU': 'SKU-031', 'QTY': 3, 'PRICE': Decimal('187616.25')}]",
+   "actual": "[{'LINE_NO': 1, 'SKU': 'SKU-029', 'QTY': 1, 'PRICE': Decimal128('187615.7500')}, {'LINE_NO': 2, 'SKU': 'SKU-030', 'QTY': 2, 'PRICE': Decimal128('187616.0000')}]"
+  },
+  {
+   "key": 251109,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-014', 'QTY': 1, 'PRICE': Decimal('188332')}, {'LINE_NO': 2, 'SKU': 'SKU-015', 'QTY': 2, 'PRICE': Decimal('188332.25')}]",
+   "actual": "[{'LINE_NO': 1, 'SKU': 'SKU-014', 'QTY': 1, 'PRICE': Decimal128('188332.0000')}]"
+  },
+  {
+   "key": 251232,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-025', 'QTY': 1, 'PRICE': Decimal('188424.25')}]",
+   "actual": "None"
+  },
+  {
+   "key": 251365,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-006', 'QTY': 1, 'PRICE': Decimal('188524')}, {'LINE_NO': 2, 'SKU': 'SKU-007', 'QTY': 2, 'PRICE': Decimal('188524.25')}]",
+   "actual": "[{'LINE_NO': 2, 'SKU': 'SKU-007', 'QTY': 2, 'PRICE': Decimal128('188524.2500')}]"
+  },
+  {
+   "key": 252121,
+   "field": "lines",
+   "kind": "nested",
+   "expected": "[{'LINE_NO': 1, 'SKU': 'SKU-048', 'QTY': 1, 'PRICE': Decimal('189091')}, {'LINE_NO': 2, 'SKU': 'SKU-049', 'QTY': 2, 'PRICE': Decimal('189091.25')}]",
+   "actual": "[{'LINE_NO': 1, 'SKU': 'SKU-048', 'QTY': 1, 'PRICE': Decimal128('189091.0000')}]"
+  }
+ ]
+}
