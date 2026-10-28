@@ -49,6 +49,25 @@ generator that replaced it.
 | Reconcile after load (1,000 most recently touched orders + 1 % sample, 10,964 orders) | missing 0, extra 0, field diffs 0: PASS at 09:51:28Z, 4 min 16 s after the load ended (upper bound on the drain) |
 | Lag probes during the load | see the lag section below |
 
-## Load 2 (200 tx/s over worker connections, 30 min)
+## Load 2 (200 tx/s over worker connections, 30 min, default sink with 1 task)
+
+| Measure | Value |
+|---|---|
+| Window | 09:51:58Z to 10:22:00Z |
+| Transactions / achieved rate | 352,496 / 195.7 tx/s over 40 connections |
+| Orders touched | 542,552 |
+| Source connector output | about 53 k change records/min (880/s), steady |
+| Flink pending records | near zero throughout: the join keeps up |
+| Atlas sink throughput | about 10.5 k records/min (175 writes/s) with `tasks.max=1` |
+| Sink backlog (`order_doc` consumer lag) | grows linearly during the load, peak 376 k records at 10:22Z |
+| Backlog drain after the load stopped | 38 min 30 s (backlog 1 record at 11:00Z) |
+| Reconcile after load (1,000 most recently touched + 1 % sample, 10,959 orders) | FAIL with 226 missing and 2,668 field diffs at 10:23Z, converging each minute; PASS at 11:00:32Z, 38 min 32 s after the load ended |
+
+The pipeline does not keep up with 200 tx/s in its default configuration: the single sink task is
+the bottleneck, not Atlas (the M10 cluster took 3,500 bulk writes/s from the benchmark host) and not
+Flink. Every document reached the correct state once the backlog drained; no wrong final state.
+Metrics are in `metrics/load2-*.json` and `metrics/drain2-*.json` (Confluent Metrics API, 1-minute buckets).
+
+## Load 3 (200 tx/s, sink raised to 6 tasks, one per `order_doc` partition)
 
 Pending.

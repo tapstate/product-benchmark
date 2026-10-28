@@ -1,0 +1,23 @@
+{
+ "at": "2026-10-28T11:00:32+00:00",
+ "vendor": "confluent",
+ "tier": "b",
+ "phase": "load2",
+ "mode": "sample=0.01 touched=1 files last=1000 (10959 orders)",
+ "seconds": 33.3,
+ "source_counts": {
+  "BENCH_CUSTOMERS": 100000,
+  "BENCH_ORDERS": 1146399,
+  "BENCH_LINES": 2527577
+ },
+ "target_count": 1146399,
+ "expected": 10959,
+ "target": 10959,
+ "missing": 0,
+ "extra": 0,
+ "field_diffs": 0,
+ "result": "PASS",
+ "missing_keys": [],
+ "extra_keys": [],
+ "diffs": []
+}
