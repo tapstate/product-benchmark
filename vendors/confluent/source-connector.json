@@ -1,0 +1,22 @@
+{
+  "name": "bench-oracle-xstream",
+  "config": {
+    "connector.class": "OracleXStreamSource",
+    "kafka.auth.mode": "SERVICE_ACCOUNT",
+    "kafka.service.account.id": "<redacted>",
+    "database.hostname": "<rds-endpoint>",
+    "database.port": "1521",
+    "database.user": "cfltuser",
+    "database.password": "<redacted>",
+    "database.dbname": "ORCL",
+    "database.service.name": "ORCL",
+    "database.out.server.name": "xout",
+    "topic.prefix": "bench",
+    "table.include.list": "BENCH\\.BENCH_(CUSTOMERS|ORDERS|LINES)",
+    "snapshot.mode": "initial",
+    "output.data.format": "AVRO",
+    "output.key.format": "AVRO",
+    "after.state.only": "true",
+    "tasks.max": "1"
+  }
+}

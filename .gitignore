@@ -1,0 +1,5 @@
+bench.env
+__pycache__/
+*.pyc
+.venv/
+results/runs/*/screenshots/*.png.tmp

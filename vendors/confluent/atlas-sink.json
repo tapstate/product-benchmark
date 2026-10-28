@@ -1,0 +1,22 @@
+{
+  "name": "bench-atlas-sink",
+  "config": {
+    "connector.class": "MongoDbAtlasSink",
+    "kafka.auth.mode": "SERVICE_ACCOUNT",
+    "kafka.service.account.id": "<redacted>",
+    "topics": "order_doc",
+    "input.data.format": "AVRO",
+    "input.key.format": "AVRO",
+    "connection.host": "<cluster>.mongodb.net",
+    "connection.user": "<redacted>",
+    "connection.password": "<redacted>",
+    "database": "cr_confluent",
+    "collection": "orders",
+    "doc.id.strategy": "PartialValueStrategy",
+    "doc.id.strategy.partial.value.projection.list": "ORDER_ID",
+    "doc.id.strategy.partial.value.projection.type": "AllowList",
+    "write.strategy": "ReplaceOneDefaultStrategy",
+    "delete.on.null.values": "true",
+    "tasks.max": "1"
+  }
+}
