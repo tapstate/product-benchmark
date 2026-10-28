@@ -125,13 +125,18 @@ def cmd_lag(args, env):
                 break
             time.sleep(args.poll)
         samples.append({"marker": marker_id, "lag_seconds": None if seen is None else round(seen, 2)})
-        print(f"  probe {marker_id}: {'timeout' if seen is None else f'{seen:.2f}s'}")
+        line = f"  probe {marker_id}: {'timeout' if seen is None else f'{seen:.2f}s'}"
+        print(line, flush=True)
+        os.makedirs(args.out, exist_ok=True)
+        with open(os.path.join(args.out, "lag-progress.log"), "a") as f:  # survives an interrupted run
+            f.write(f"{now_iso()} {line.strip()}\n")
         if i + 1 < args.samples:
             time.sleep(args.interval)
     db.close()
     lags = sorted(s["lag_seconds"] for s in samples if s["lag_seconds"] is not None)
-    stats = {"p50": lags[len(lags) // 2] if lags else None, "max": lags[-1] if lags else None,
-             "timeouts": len(samples) - len(lags)}
+    stats = {"p50": lags[len(lags) // 2] if lags else None,
+             "p95": lags[min(len(lags) - 1, int(len(lags) * 0.95))] if lags else None,
+             "max": lags[-1] if lags else None, "timeouts": len(samples) - len(lags)}
     write_result(args, "lag", {"samples": samples, **stats})
 
 
