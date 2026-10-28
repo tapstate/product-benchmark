@@ -1,0 +1,502 @@
+[
+ {
+  "timestampMillis": 1793162280704,
+  "level": "WARN",
+  "message": "Pipeline bench_orders entered FAILED [actuation.source-schema-not-discovered]: its data-plane job died\nio.tapstate.core.common.TapstateException: actuation.source-schema-not-discovered {source=bench-oracle}\n\tat io.tapstate.app.TargetModelResolver.requireAllDiscovered(TargetModelResolver.java:61)\n\tat io.tapstate.app.StoreBackedDagSource.requireDiscovered(StoreBackedDagSource.java:285)\n\tat io.tapstate.app.StoreBackedDagSource.validateStart(StoreBackedDagSource.java:255)\n\tat io.tapstate.app.StoreBackedDagSource.prepareStart(StoreBackedDagSource.java:214)\n\tat io.tapstate.app.EngineLifecycleActuator.start(EngineLifecycleActuator.java:122)\n\tat io.tapstate.runtime.scheduler.PipelineConverger.actuate(PipelineConverger.java:326)\n\tat io.tapstate.runtime.scheduler.PipelineConverger.driveTo(PipelineConverger.java:259)\n\tat io.tapstate.runtime.scheduler.PipelineConverger.converge(PipelineConverger.java:126)\n\tat io.tapstate.app.ConvergenceDriver.reconcile(ConvergenceDriver.java:107)\n\tat java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source)\n\tat java.base/java.lang.reflect.Method.invoke(Unknown Source)\n\tat org.springframework.scheduling.support.ScheduledMethodRunnable.runInternal(ScheduledMethodRunnable.java:128)\n\tat org.springframework.scheduling.support.ScheduledMethodRunnable.lambda$run$1(ScheduledMethodRunnable.java:122)\n\tat io.micrometer.observation.Observation.observe(Observation.java:569)\n\tat org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:122)\n\tat org.springframework.scheduling.config.Task$OutcomeTrackingRunnable.run(Task.java:88)\n\tat org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)\n\tat java.base/java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)\n\tat java.base/java.util.concurrent.FutureTask.runAndReset(Unknown Source)\n\tat java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)\n\tat java.base/java.lang.Thread.run(Unknown Source)\n"
+ },
+ {
+  "timestampMillis": 1793162399581,
+  "level": "INFO",
+  "message": "Nest state placement resolved before pipeline 'bench_orders' starts: {nest.bench_orders.order_doc.$root.parking=mdb_6ae080b44d7449e38672f747_operator, nest.bench_orders.order_doc.customer.refs=mdb_6ae080b44d7449e38672f747_operator, nest.bench_orders.order_doc.$root=mdb_6ae080b44d7449e38672f747_operator, nest.bench_orders.order_doc.customer=mdb_6ae080b44d7449e38672f747_operator}"
+ },
+ {
+  "timestampMillis": 1793162406219,
+  "level": "INFO",
+  "message": "HikariPool-86 - Starting..."
+ },
+ {
+  "timestampMillis": 1793162406220,
+  "level": "WARN",
+  "message": "Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation."
+ },
+ {
+  "timestampMillis": 1793162406813,
+  "level": "INFO",
+  "message": "HikariPool-86 - Start completed."
+ },
+ {
+  "timestampMillis": 1793162410383,
+  "level": "INFO",
+  "message": "Snapshot read started for table BENCH_CUSTOMERS"
+ },
+ {
+  "timestampMillis": 1793162410494,
+  "level": "INFO",
+  "message": "Snapshot read finished for table BENCH_CUSTOMERS (40 events read; awaiting target confirmation)"
+ },
+ {
+  "timestampMillis": 1793162410603,
+  "level": "INFO",
+  "message": "Snapshot read started for table BENCH_ORDERS"
+ },
+ {
+  "timestampMillis": 1793162410718,
+  "level": "INFO",
+  "message": "Snapshot read finished for table BENCH_ORDERS (200 events read; awaiting target confirmation)"
+ },
+ {
+  "timestampMillis": 1793162410827,
+  "level": "INFO",
+  "message": "Snapshot read started for table BENCH_LINES"
+ },
+ {
+  "timestampMillis": 1793162410939,
+  "level": "INFO",
+  "message": "Snapshot read finished for table BENCH_LINES (460 events read; awaiting target confirmation)"
+ },
+ {
+  "timestampMillis": 1793162412188,
+  "level": "INFO",
+  "message": "HikariPool-87 - Starting..."
+ },
+ {
+  "timestampMillis": 1793162412189,
+  "level": "WARN",
+  "message": "Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation."
+ },
+ {
+  "timestampMillis": 1793162412842,
+  "level": "INFO",
+  "message": "HikariPool-87 - Start completed."
+ },
+ {
+  "timestampMillis": 1793162414945,
+  "level": "INFO",
+  "message": "HikariPool-86 - Shutdown initiated..."
+ },
+ {
+  "timestampMillis": 1793162415116,
+  "level": "INFO",
+  "message": "HikariPool-86 - Shutdown completed."
+ },
+ {
+  "timestampMillis": 1793162436791,
+  "level": "WARN",
+  "message": "nest.state-served-from-cold-layer {accesses=227, backfills=218, entries=178, millis=35.5ms, namespace=nest.bench_orders.order_doc.customer.refs, resident=93.2%, share=96%, stored=191} (pipeline bench_orders)"
+ },
+ {
+  "timestampMillis": 1793162440361,
+  "level": "INFO",
+  "message": "Snapshot finished for table BENCH_LINES (target writes confirmed)"
+ },
+ {
+  "timestampMillis": 1793162440611,
+  "level": "INFO",
+  "message": "Snapshot finished for table BENCH_ORDERS (target writes confirmed)"
+ },
+ {
+  "timestampMillis": 1793162440935,
+  "level": "INFO",
+  "message": "Snapshot finished for table BENCH_CUSTOMERS (target writes confirmed)"
+ },
+ {
+  "timestampMillis": 1793162464698,
+  "level": "INFO",
+  "message": "nest.state-served-from-cold-layer no longer applies to nest.bench_orders.order_doc.customer.refs of pipeline bench_orders: 13 of 13 state reads went to storage (100%)"
+ },
+ {
+  "timestampMillis": 1793162473833,
+  "level": "INFO",
+  "message": "Snapshot finished for table BENCH_LINES (target writes confirmed)"
+ },
+ {
+  "timestampMillis": 1793162473866,
+  "level": "INFO",
+  "message": "Snapshot finished for table BENCH_LINES (target writes confirmed)"
+ },
+ {
+  "timestampMillis": 1793162473875,
+  "level": "INFO",
+  "message": "Snapshot finished for table BENCH_LINES (target writes confirmed)"
+ },
+ {
+  "timestampMillis": 1793162474037,
+  "level": "INFO",
+  "message": "Snapshot finished for table BENCH_ORDERS (target writes confirmed)"
+ },
+ {
+  "timestampMillis": 1793162474114,
+  "level": "INFO",
+  "message": "Snapshot finished for table BENCH_ORDERS (target writes confirmed)"
+ },
+ {
+  "timestampMillis": 1793162474249,
+  "level": "INFO",
+  "message": "Snapshot finished for table BENCH_ORDERS (target writes confirmed)"
+ },
+ {
+  "timestampMillis": 1793162474249,
+  "level": "INFO",
+  "message": "Snapshot finished for table BENCH_CUSTOMERS (target writes confirmed)"
+ },
+ {
+  "timestampMillis": 1793162474545,
+  "level": "INFO",
+  "message": "Snapshot finished for table BENCH_CUSTOMERS (target writes confirmed)"
+ },
+ {
+  "timestampMillis": 1793162474631,
+  "level": "INFO",
+  "message": "Snapshot finished for table BENCH_CUSTOMERS (target writes confirmed)"
+ },
+ {
+  "timestampMillis": 1793162474631,
+  "level": "INFO",
+  "message": "CDC confirmed for table BENCH_CUSTOMERS (epoch 1, seq 0; 1 updates on writer serve.bench_orders_to_atlas#0)"
+ },
+ {
+  "timestampMillis": 1793162485586,
+  "level": "INFO",
+  "message": "CDC confirmed for table BENCH_LINES (epoch 1, seq 5; 1 updates on writer serve.bench_orders_to_atlas#2)"
+ },
+ {
+  "timestampMillis": 1793162508555,
+  "level": "INFO",
+  "message": "CDC confirmed for table BENCH_LINES (epoch 1, seq 5; 1 updates on writer serve.bench_orders_to_atlas#1)"
+ },
+ {
+  "timestampMillis": 1793162508576,
+  "level": "INFO",
+  "message": "CDC confirmed for table BENCH_LINES (epoch 1, seq 5; 1 updates on writer serve.bench_orders_to_atlas#0)"
+ },
+ {
+  "timestampMillis": 1793162508585,
+  "level": "INFO",
+  "message": "CDC confirmed for table BENCH_LINES (epoch 1, seq 7; 1 updates on writer serve.bench_orders_to_atlas#3)"
+ },
+ {
+  "timestampMillis": 1793162537127,
+  "level": "INFO",
+  "message": "CDC confirmed for table BENCH_CUSTOMERS (epoch 1, seq 0; 1 updates on writer serve.bench_orders_to_atlas#2)"
+ },
+ {
+  "timestampMillis": 1793162537340,
+  "level": "INFO",
+  "message": "CDC confirmed for table BENCH_CUSTOMERS (epoch 1, seq 0; 1 updates on writer serve.bench_orders_to_atlas#3)"
+ },
+ {
+  "timestampMillis": 1793162537341,
+  "level": "INFO",
+  "message": "CDC confirmed for table BENCH_CUSTOMERS (epoch 1, seq 1; 1 updates on writer serve.bench_orders_to_atlas#1)"
+ },
+ {
+  "timestampMillis": 1793162627675,
+  "level": "INFO",
+  "message": "Snapshot finished for table BENCH_LINES (target writes confirmed)"
+ },
+ {
+  "timestampMillis": 1793162627728,
+  "level": "INFO",
+  "message": "Snapshot finished for table BENCH_LINES (target writes confirmed)"
+ },
+ {
+  "timestampMillis": 1793162627946,
+  "level": "INFO",
+  "message": "Snapshot finished for table BENCH_ORDERS (target writes confirmed)"
+ },
+ {
+  "timestampMillis": 1793162627989,
+  "level": "INFO",
+  "message": "Snapshot finished for table BENCH_ORDERS (target writes confirmed)"
+ },
+ {
+  "timestampMillis": 1793162628028,
+  "level": "INFO",
+  "message": "Snapshot finished for table BENCH_ORDERS (target writes confirmed)"
+ },
+ {
+  "timestampMillis": 1793162628488,
+  "level": "INFO",
+  "message": "Snapshot finished for table BENCH_CUSTOMERS (target writes confirmed)"
+ },
+ {
+  "timestampMillis": 1793162628489,
+  "level": "INFO",
+  "message": "CDC confirmed for table BENCH_CUSTOMERS (epoch 1, seq 3; 1 updates on writer serve.bench_orders_to_atlas#2)"
+ },
+ {
+  "timestampMillis": 1793162653565,
+  "level": "WARN",
+  "message": "ErrorKit [Ignore error: java.sql.SQLException: ORA-01307: no LogMiner session is currently active\nORA-06512: at \"SYS.DBMS_LOGMNR\", line 90\nORA-06512: at line 1\n]"
+ },
+ {
+  "timestampMillis": 1793162653567,
+  "level": "INFO",
+  "message": "HikariPool-87 - Shutdown initiated..."
+ },
+ {
+  "timestampMillis": 1793162653788,
+  "level": "INFO",
+  "message": "HikariPool-87 - Shutdown completed."
+ },
+ {
+  "timestampMillis": 1793162701685,
+  "level": "INFO",
+  "message": "Nest state placement resolved before pipeline 'bench_orders' starts: {nest.bench_orders.order_doc.$root.parking=mdb_6ae080b44d7449e38672f747_operator, nest.bench_orders.order_doc.customer.refs=mdb_6ae080b44d7449e38672f747_operator, nest.bench_orders.order_doc.$root=mdb_6ae080b44d7449e38672f747_operator, nest.bench_orders.order_doc.customer=mdb_6ae080b44d7449e38672f747_operator}"
+ },
+ {
+  "timestampMillis": 1793162705524,
+  "level": "INFO",
+  "message": "HikariPool-88 - Starting..."
+ },
+ {
+  "timestampMillis": 1793162705525,
+  "level": "WARN",
+  "message": "Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation."
+ },
+ {
+  "timestampMillis": 1793162706130,
+  "level": "INFO",
+  "message": "HikariPool-88 - Start completed."
+ },
+ {
+  "timestampMillis": 1793162713423,
+  "level": "INFO",
+  "message": "Snapshot finished for table BENCH_ORDERS (target writes confirmed)"
+ },
+ {
+  "timestampMillis": 1793162713663,
+  "level": "INFO",
+  "message": "Snapshot finished for table BENCH_LINES (target writes confirmed)"
+ },
+ {
+  "timestampMillis": 1793162713902,
+  "level": "INFO",
+  "message": "Snapshot finished for table BENCH_CUSTOMERS (target writes confirmed)"
+ },
+ {
+  "timestampMillis": 1793162715280,
+  "level": "INFO",
+  "message": "Snapshot finished for table BENCH_LINES (target writes confirmed)"
+ },
+ {
+  "timestampMillis": 1793162715280,
+  "level": "INFO",
+  "message": "Snapshot finished for table BENCH_LINES (target writes confirmed)"
+ },
+ {
+  "timestampMillis": 1793162715316,
+  "level": "INFO",
+  "message": "Snapshot finished for table BENCH_LINES (target writes confirmed)"
+ },
+ {
+  "timestampMillis": 1793162715478,
+  "level": "INFO",
+  "message": "Snapshot finished for table BENCH_CUSTOMERS (target writes confirmed)"
+ },
+ {
+  "timestampMillis": 1793162715479,
+  "level": "INFO",
+  "message": "Snapshot finished for table BENCH_CUSTOMERS (target writes confirmed)"
+ },
+ {
+  "timestampMillis": 1793162715552,
+  "level": "INFO",
+  "message": "Snapshot finished for table BENCH_CUSTOMERS (target writes confirmed)"
+ },
+ {
+  "timestampMillis": 1793162715566,
+  "level": "INFO",
+  "message": "CDC confirmed for table BENCH_CUSTOMERS (epoch 2, seq 4; 1 updates on writer serve.bench_orders_to_atlas#3)"
+ },
+ {
+  "timestampMillis": 1793162715686,
+  "level": "INFO",
+  "message": "Snapshot finished for table BENCH_ORDERS (target writes confirmed)"
+ },
+ {
+  "timestampMillis": 1793162715686,
+  "level": "INFO",
+  "message": "Snapshot finished for table BENCH_ORDERS (target writes confirmed)"
+ },
+ {
+  "timestampMillis": 1793162715785,
+  "level": "INFO",
+  "message": "Snapshot finished for table BENCH_ORDERS (target writes confirmed)"
+ },
+ {
+  "timestampMillis": 1793162728802,
+  "level": "INFO",
+  "message": "CDC confirmed for table BENCH_ORDERS (epoch 2, seq 154; 1 updates on writer serve.bench_orders_to_atlas#3)"
+ },
+ {
+  "timestampMillis": 1793162735624,
+  "level": "WARN",
+  "message": "nest.state-served-from-cold-layer {accesses=400, backfills=243, entries=197, millis=35.6ms, namespace=nest.bench_orders.order_doc.customer.refs, resident=100.0%, share=61%, stored=197} (pipeline bench_orders)"
+ },
+ {
+  "timestampMillis": 1793162761977,
+  "level": "INFO",
+  "message": "nest.state-served-from-cold-layer no longer applies to nest.bench_orders.order_doc.customer.refs of pipeline bench_orders: 0 of 0 state reads went to storage (unknown)"
+ },
+ {
+  "timestampMillis": 1793163524399,
+  "level": "WARN",
+  "message": "ErrorKit [Ignore error: java.sql.SQLException: ORA-01307: no LogMiner session is currently active\nORA-06512: at \"SYS.DBMS_LOGMNR\", line 90\nORA-06512: at line 1\n]"
+ },
+ {
+  "timestampMillis": 1793163524399,
+  "level": "INFO",
+  "message": "HikariPool-88 - Shutdown initiated..."
+ },
+ {
+  "timestampMillis": 1793163524562,
+  "level": "INFO",
+  "message": "HikariPool-88 - Shutdown completed."
+ },
+ {
+  "timestampMillis": 1793163525821,
+  "level": "INFO",
+  "message": "HikariPool-98 - Starting..."
+ },
+ {
+  "timestampMillis": 1793163525821,
+  "level": "WARN",
+  "message": "Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation."
+ },
+ {
+  "timestampMillis": 1793163526379,
+  "level": "INFO",
+  "message": "HikariPool-98 - Start completed."
+ },
+ {
+  "timestampMillis": 1793163526585,
+  "level": "INFO",
+  "message": "HikariPool-98 - Shutdown initiated..."
+ },
+ {
+  "timestampMillis": 1793163527034,
+  "level": "INFO",
+  "message": "HikariPool-98 - Shutdown completed."
+ },
+ {
+  "timestampMillis": 1793187987094,
+  "level": "INFO",
+  "message": "Nest state placement resolved before pipeline 'bench_orders' starts: {nest.bench_orders.order_doc.$root.parking=mdb_6ae080b44d7449e38672f747_operator, nest.bench_orders.order_doc.customer.refs=mdb_6ae080b44d7449e38672f747_operator, nest.bench_orders.order_doc.$root=mdb_6ae080b44d7449e38672f747_operator, nest.bench_orders.order_doc.customer=mdb_6ae080b44d7449e38672f747_operator}"
+ },
+ {
+  "timestampMillis": 1793187993807,
+  "level": "INFO",
+  "message": "HikariPool-124 - Starting..."
+ },
+ {
+  "timestampMillis": 1793187993808,
+  "level": "WARN",
+  "message": "Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation."
+ },
+ {
+  "timestampMillis": 1793187994393,
+  "level": "INFO",
+  "message": "HikariPool-124 - Start completed."
+ },
+ {
+  "timestampMillis": 1793187998489,
+  "level": "INFO",
+  "message": "Snapshot read started for table BENCH_CUSTOMERS"
+ },
+ {
+  "timestampMillis": 1793188025257,
+  "level": "WARN",
+  "message": "nest.state-served-from-cold-layer {accesses=239, backfills=239, entries=0, millis=35.3ms, namespace=nest.bench_orders.order_doc.customer.refs, resident=unknown, share=100%, stored=0} (pipeline bench_orders)"
+ },
+ {
+  "timestampMillis": 1793188025258,
+  "level": "WARN",
+  "message": "nest.state-served-from-cold-layer {accesses=241, backfills=256, entries=240, millis=33.7ms, namespace=nest.bench_orders.order_doc.customer, resident=91.3%, share=106%, stored=263} (pipeline bench_orders)"
+ },
+ {
+  "timestampMillis": 1793188052100,
+  "level": "INFO",
+  "message": "nest.state-served-from-cold-layer no longer applies to nest.bench_orders.order_doc.customer of pipeline bench_orders: 0 of 326 state reads went to storage (0%)"
+ },
+ {
+  "timestampMillis": 1793188078974,
+  "level": "WARN",
+  "message": "nest.state-served-from-cold-layer {accesses=399, backfills=266, entries=964, millis=35.4ms, namespace=nest.bench_orders.order_doc.customer, resident=99.3%, share=67%, stored=971} (pipeline bench_orders)"
+ },
+ {
+  "timestampMillis": 1793188105912,
+  "level": "INFO",
+  "message": "nest.state-served-from-cold-layer no longer applies to nest.bench_orders.order_doc.customer of pipeline bench_orders: 0 of 329 state reads went to storage (0%)"
+ },
+ {
+  "timestampMillis": 1793188161458,
+  "level": "WARN",
+  "message": "nest.state-served-from-cold-layer {accesses=379, backfills=265, entries=1998, millis=34.0ms, namespace=nest.bench_orders.order_doc.customer, resident=97.9%, share=70%, stored=2040} (pipeline bench_orders)"
+ },
+ {
+  "timestampMillis": 1793188189448,
+  "level": "INFO",
+  "message": "nest.state-served-from-cold-layer no longer applies to nest.bench_orders.order_doc.customer of pipeline bench_orders: 0 of 382 state reads went to storage (0%)"
+ },
+ {
+  "timestampMillis": 1793188244122,
+  "level": "WARN",
+  "message": "nest.state-served-from-cold-layer {accesses=390, backfills=266, entries=2962, millis=33.5ms, namespace=nest.bench_orders.order_doc.customer, resident=95.6%, share=68%, stored=3098} (pipeline bench_orders)"
+ },
+ {
+  "timestampMillis": 1793188272177,
+  "level": "INFO",
+  "message": "nest.state-served-from-cold-layer no longer applies to nest.bench_orders.order_doc.customer of pipeline bench_orders: 0 of 326 state reads went to storage (0%)"
+ },
+ {
+  "timestampMillis": 1793188299243,
+  "level": "WARN",
+  "message": "nest.state-served-from-cold-layer {accesses=394, backfills=262, entries=3386, millis=34.4ms, namespace=nest.bench_orders.order_doc.customer, resident=88.7%, share=66%, stored=3818} (pipeline bench_orders)"
+ },
+ {
+  "timestampMillis": 1793188327320,
+  "level": "INFO",
+  "message": "nest.state-served-from-cold-layer no longer applies to nest.bench_orders.order_doc.customer of pipeline bench_orders: 0 of 313 state reads went to storage (0%)"
+ },
+ {
+  "timestampMillis": 1793188383939,
+  "level": "WARN",
+  "message": "nest.state-served-from-cold-layer {accesses=370, backfills=267, entries=3703, millis=34.2ms, namespace=nest.bench_orders.order_doc.customer, resident=75.9%, share=72%, stored=4877} (pipeline bench_orders)"
+ },
+ {
+  "timestampMillis": 17931884<redacted>13,
+  "level": "INFO",
+  "message": "nest.state-served-from-cold-layer no longer applies to nest.bench_orders.order_doc.customer of pipeline bench_orders: 0 of 318 state reads went to storage (0%)"
+ },
+ {
+  "timestampMillis": 1793188469053,
+  "level": "WARN",
+  "message": "nest.state-served-from-cold-layer {accesses=379, backfills=267, entries=3779, millis=33.9ms, namespace=nest.bench_orders.order_doc.customer, resident=63.4%, share=70%, stored=5959} (pipeline bench_orders)"
+ },
+ {
+  "timestampMillis": 1793188496443,
+  "level": "INFO",
+  "message": "nest.state-served-from-cold-layer no longer applies to nest.bench_orders.order_doc.customer of pipeline bench_orders: 0 of 334 state reads went to storage (0%)"
+ },
+ {
+  "timestampMillis": 1793188551807,
+  "level": "WARN",
+  "message": "nest.state-served-from-cold-layer {accesses=312, backfills=263, entries=3794, millis=34.4ms, namespace=nest.bench_orders.order_doc.customer, resident=53.9%, share=84%, stored=7040} (pipeline bench_orders)"
+ },
+ {
+  "timestampMillis": 1793188580199,
+  "level": "INFO",
+  "message": "nest.state-served-from-cold-layer no longer applies to nest.bench_orders.order_doc.customer of pipeline bench_orders: 0 of 386 state reads went to storage (0%)"
+ },
+ {
+  "timestampMillis": 1793188636563,
+  "level": "WARN",
+  "message": "nest.state-served-from-cold-layer {accesses=380, backfills=265, entries=3794, millis=34.0ms, namespace=nest.bench_orders.order_doc.customer, resident=46.7%, share=70%, stored=8126} (pipeline bench_orders)"
+ },
+ {
+  "timestampMillis": 1793188664332,
+  "level": "INFO",
+  "message": "nest.state-served-from-cold-layer no longer applies to nest.bench_orders.order_doc.customer of pipeline bench_orders: 0 of 394 state reads went to storage (0%)"
+ }
+]

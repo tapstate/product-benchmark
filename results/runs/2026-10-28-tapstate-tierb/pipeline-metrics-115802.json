@@ -1,0 +1,130 @@
+{
+ "at": "2026-10-28T11:58:02Z",
+ "metrics": {
+  "bytes.in": 1401564,
+  "errors.actuation.source-schema-not-discovered": 1,
+  "frontierStalledMillis.BENCH_CUSTOMERS": 604808,
+  "nestStateAccesses.nest.bench_orders.order_doc.customer": 8490,
+  "nestStateAccesses.nest.bench_orders.order_doc.customer.refs": 8480,
+  "nestStateBackfillMillis.nest.bench_orders.order_doc.customer": 81249,
+  "nestStateBackfillMillis.nest.bench_orders.order_doc.customer.refs": 303182,
+  "nestStateBackfills.nest.bench_orders.order_doc.customer": 2377,
+  "nestStateBackfills.nest.bench_orders.order_doc.customer.refs": 8480,
+  "nestStateEntries.nest.bench_orders.order_doc.customer": 3794,
+  "nestStateEntries.nest.bench_orders.order_doc.customer.refs": 0,
+  "nestStatePendingHighWater.nest.bench_orders.order_doc.customer": 0,
+  "nestStatePendingHighWater.nest.bench_orders.order_doc.customer.refs": 0,
+  "nestStateStored.nest.bench_orders.order_doc.customer": 8493,
+  "nestStateStored.nest.bench_orders.order_doc.customer.refs": 0,
+  "recordCount": 8,
+  "records.in": 24576
+ },
+ "status": {
+  "pipelineId": "bench_orders",
+  "state": "RUNNING",
+  "displayState": "RUNNING",
+  "observedAt": "2026-10-28T11:57:43.963Z",
+  "observedAgeMillis": 18527,
+  "desiredState": "RUNNING",
+  "observedState": "RUNNING",
+  "hasArtifact": true,
+  "plan": {
+   "members": [
+    "7df11871-f24d-49ee-9e61-9e82bf1269bb"
+   ],
+   "nodes": [
+    {
+     "node": "bench-oracle.BENCH_LINES",
+     "requested": 1,
+     "requestedOrigin": "node-default",
+     "scope": "total-one",
+     "memberCount": 1,
+     "effective": 1,
+     "reasons": [
+      "requested-one",
+      "source-reads-not-split"
+     ],
+     "batch": {
+      "maxRecords": 1024,
+      "maxWaitMillis": 0
+     }
+    },
+    {
+     "node": "bench-oracle.BENCH_CUSTOMERS",
+     "requested": 1,
+     "requestedOrigin": "node-default",
+     "scope": "total-one",
+     "memberCount": 1,
+     "effective": 1,
+     "reasons": [
+      "requested-one",
+      "source-reads-not-split"
+     ],
+     "batch": {
+      "maxRecords": 1024,
+      "maxWaitMillis": 0
+     }
+    },
+    {
+     "node": "bench-oracle.BENCH_ORDERS",
+     "requested": 1,
+     "requestedOrigin": "node-default",
+     "scope": "total-one",
+     "memberCount": 1,
+     "effective": 1,
+     "reasons": [
+      "requested-one",
+      "source-reads-not-split"
+     ],
+     "batch": {
+      "maxRecords": 1024,
+      "maxWaitMillis": 0
+     }
+    },
+    {
+     "node": "order_doc",
+     "requested": 1,
+     "requestedOrigin": "node-default",
+     "scope": "total-one",
+     "memberCount": 1,
+     "effective": 1,
+     "reasons": [
+      "requested-one"
+     ],
+     "batch": {
+      "maxRecords": 1024,
+      "maxWaitMillis": 0
+     }
+    },
+    {
+     "node": "serve.bench_orders_to_atlas",
+     "requested": 4,
+     "requestedOrigin": "node-default",
+     "scope": "native",
+     "memberCount": 1,
+     "computedLocal": 4,
+     "effective": 4,
+     "reasons": [],
+     "batch": {
+      "maxRecords": 1024,
+      "maxWaitMillis": 0
+     },
+     "resources": {
+      "writers": 4,
+      "connectorMode": "isolated",
+      "connectorInstances": 4,
+      "bufferedRecords": 8192,
+      "edgeQueueRecords": 36864
+     }
+    }
+   ],
+   "plannedAt": "2026-10-28T11:46:39.646513175Z",
+   "replaces": {
+    "members": [
+     "7df11871-f24d-49ee-9e61-9e82bf1269bb"
+    ],
+    "plannedAt": "2026-10-28T04:45:09.382928023Z"
+   }
+  }
+ }
+}
