@@ -41,3 +41,9 @@ Pitfalls recorded (each cost one failed statement and a documentation search):
 4. Casting a key column (`CAST(ORDER_ID AS INT)`) between `FROM_CHANGELOG` and an upsert sink fails planning with "changelog mode mismatch"; the current-state tables must keep the source key types.
 5. With a single-column primary key the connector's default `key.template` writes a bare Avro decimal as the record key, which Flink's inferred table cannot deserialize ("Error while deserializing key"). Fix: `key.template=${primaryKeyStruct}`, which required deleting the connector, the topics and the registered schemas and re-snapshotting.
 6. The CLI's `schema-registry subject delete` does not exist in 4.81.0; schemas are removed with `schema delete --version all`, twice (soft, then `--permanent`).
+7. Flink `TIMESTAMP(3)` is written to Avro as `local-timestamp-millis`; the Atlas sink stores that as a plain integer, not a BSON date (first reconcile: 200 type differences). `TIMESTAMP_LTZ(3)` becomes `timestamp-millis` and lands as a date.
+8. An upsert table's key column is excluded from the record value by default, so the document had no top-level ORDER_ID; `'value.fields-include' = 'all'` is needed.
+9. After the output topic was dropped and recreated, the paused sink resumed from a stale offset and wrote only 58 of 200 documents; the sink had to be deleted and recreated with `consumer.override.auto.offset.reset=earliest`.
+10. The `_id` written by `FullKeyStrategy` is a sub-document `{ORDER_ID: n}`, not the scalar order id; the only way to get a scalar `_id` and still honour deletes would be a key with a single `_id` field (`ProvidedInKeyStrategy`), which the Flink table would have to be shaped for.
+
+Observed: line order inside `lines` is arbitrary (for example LINE_NO 2, 3, 1, 4), as expected from `ARRAY_AGG` without `ORDER BY`. The output topic held 231 records for 200 orders after the snapshot: 31 intermediate join states were emitted and then overwritten.

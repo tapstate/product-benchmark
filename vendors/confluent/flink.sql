@@ -26,17 +26,21 @@ FROM FROM_CHANGELOG(input => TABLE `bench.BENCH_LINES` PARTITION BY (ORDER_ID, L
 
 -- The nested order document. An empty ARRAY[] literal is not accepted, so an order without
 -- lines carries NULL; the referee treats null, [] and an absent field alike.
+-- TIMESTAMP_LTZ, not TIMESTAMP: Flink writes TIMESTAMP as Avro local-timestamp-millis, which the
+-- Atlas sink stores as a plain integer; TIMESTAMP_LTZ becomes timestamp-millis and lands as a BSON date.
+-- value.fields-include = all: otherwise the key column ORDER_ID is absent from the document body.
 CREATE TABLE order_doc (
-  ORDER_ID INT, CUSTOMER_ID INT, STATUS STRING, ORDER_TS TIMESTAMP(3),
-  customer ROW<CUSTOMER_ID INT, NAME STRING, TIER STRING, CREATED TIMESTAMP(3)>,
+  ORDER_ID INT, CUSTOMER_ID INT, STATUS STRING, ORDER_TS TIMESTAMP_LTZ(3),
+  customer ROW<CUSTOMER_ID INT, NAME STRING, TIER STRING, CREATED TIMESTAMP_LTZ(3)>,
   lines ARRAY<ROW<LINE_NO INT, SKU STRING, QTY INT, PRICE DECIMAL(18, 4)>>,
   PRIMARY KEY (ORDER_ID) NOT ENFORCED
-) WITH ('changelog.mode' = 'upsert', 'key.format' = 'avro-registry', 'value.format' = 'avro-registry');
+) WITH ('changelog.mode' = 'upsert', 'key.format' = 'avro-registry', 'value.format' = 'avro-registry',
+        'value.fields-include' = 'all');
 
 INSERT INTO order_doc
-SELECT CAST(o.ORDER_ID AS INT), CAST(o.CUSTOMER_ID AS INT), o.STATUS, CAST(o.ORDER_TS AS TIMESTAMP(3)),
-  CASE WHEN c.CUSTOMER_ID IS NULL THEN CAST(NULL AS ROW<CUSTOMER_ID INT, NAME STRING, TIER STRING, CREATED TIMESTAMP(3)>)
-       ELSE ROW(CAST(c.CUSTOMER_ID AS INT), c.NAME, c.TIER, CAST(c.CREATED AS TIMESTAMP(3))) END,
+SELECT CAST(o.ORDER_ID AS INT), CAST(o.CUSTOMER_ID AS INT), o.STATUS, o.ORDER_TS,
+  CASE WHEN c.CUSTOMER_ID IS NULL THEN CAST(NULL AS ROW<CUSTOMER_ID INT, NAME STRING, TIER STRING, CREATED TIMESTAMP_LTZ(3)>)
+       ELSE ROW(CAST(c.CUSTOMER_ID AS INT), c.NAME, c.TIER, c.CREATED) END,
   l.lines
 FROM orders_cur o
 LEFT JOIN customers_cur c ON c.CUSTOMER_ID = o.CUSTOMER_ID

@@ -17,6 +17,7 @@
     "doc.id.strategy": "FullKeyStrategy",
     "write.strategy": "ReplaceOneDefaultStrategy",
     "delete.on.null.values": "true",
+    "consumer.override.auto.offset.reset": "earliest",
     "tasks.max": "1"
   }
 }
