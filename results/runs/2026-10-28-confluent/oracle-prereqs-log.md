@@ -28,3 +28,16 @@ its connection test with the DBA-role user alone.
 Note: the default topic template `${databaseName}.${schemaName}.${tableName}` cannot be used with a
 common-user schema such as `C##TAPDATA` because `#` is not a legal Kafka topic character; a custom
 template is required.
+| Connector RUNNING, snapshot of 700 rows visible in topics | 2026-10-28T03:57:27Z | 5 min 9 s after creation |
+| Flink CREATE TABLE x4, INSERT x4 (first attempt) | 2026-10-28T04:02Z | 4 failures, see pitfalls |
+| Atlas sink created | 2026-10-28T04:03Z | FAILED validation: delete.on.null.values needs a key-based id strategy; fixed with FullKeyStrategy, RUNNING |
+| Source connector deleted and recreated with key.template=${primaryKeyStruct}; topics and schemas deleted | 2026-10-28T04:07Z | provisioning again |
+
+Pitfalls recorded (each cost one failed statement and a documentation search):
+
+1. `op_mapping` rejects two codes mapped to the same row kind (`'R','INSERT','I','INSERT'`); the syntax is `'R, I','INSERT'`.
+2. A composite `PARTITION BY` must be parenthesised: `PARTITION BY (ORDER_ID, LINE_NO)`.
+3. `ARRAY[]` (empty array literal) is rejected with "Require at least 1 argument".
+4. Casting a key column (`CAST(ORDER_ID AS INT)`) between `FROM_CHANGELOG` and an upsert sink fails planning with "changelog mode mismatch"; the current-state tables must keep the source key types.
+5. With a single-column primary key the connector's default `key.template` writes a bare Avro decimal as the record key, which Flink's inferred table cannot deserialize ("Error while deserializing key"). Fix: `key.template=${primaryKeyStruct}`, which required deleting the connector, the topics and the registered schemas and re-snapshotting.
+6. The CLI's `schema-registry subject delete` does not exist in 4.81.0; schemas are removed with `schema delete --version all`, twice (soft, then `--permanent`).

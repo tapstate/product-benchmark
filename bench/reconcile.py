@@ -124,7 +124,7 @@ def _lines_key(line):
 
 def _canon_lines(lines):
     if lines is None:
-        return None
+        return ()  # no lines: an empty array, an omitted field and null are equivalent
     if not isinstance(lines, list):
         return ("type", type(lines).__name__, str(lines)[:80])
     rows = []

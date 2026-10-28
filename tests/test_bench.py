@@ -72,6 +72,12 @@ class ReconcileTest(unittest.TestCase):
         self.assertEqual(res.extra, ["999"])
         self.assertFalse(res.ok)
 
+    def test_null_lines_equal_empty(self):
+        docs = tier_a_docs()
+        tgt = [self.as_target(d) for d in docs]
+        tgt[9]["lines"] = None  # order 10 has no lines
+        self.assertTrue(compare(docs, tgt).ok)
+
     def test_millisecond_dates_pass(self):
         docs = tier_a_docs()
         tgt = [self.as_target(d) for d in docs]

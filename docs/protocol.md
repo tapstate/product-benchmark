@@ -35,7 +35,7 @@ Rules the referee applies (`bench/reconcile.py`):
 - Timestamps must be BSON dates; millisecond precision is accepted, an integer or a string is a
   type difference.
 - Numbers compare by value (int, Decimal128, double are equivalent when equal).
-- An order without lines may carry an empty array or omit the field. An order whose customer does
+- An order without lines may carry an empty array, a null, or omit the field (some engines cannot emit an empty array literal). An order whose customer does
   not exist carries `null` or omits the field.
 - Anything else that differs is reported with its order id, field and kind
   (`value`, `type`, `absent`, `nested`).
