@@ -1,0 +1,522 @@
+{
+ "pipelineId": "bench_orders",
+ "metrics": {
+  "bytes.in": 23686036,
+  "errors.engine.job-failed": 1,
+  "frontierGap.BENCH_CUSTOMERS": 0,
+  "frontierStalledMillis.BENCH_CUSTOMERS": 0,
+  "nestStateAccesses.nest.2fb0a39c3fe6893c50b7aaf0b0abbcbb8e94c2e8754d52420fcd4cc611fd4b3c.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d": 106250,
+  "nestStateAccesses.nest.3d98099a9b80fb99eb55244291465f78185e87171c42a861c421809eda072b34.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d": 6250,
+  "nestStateAccesses.nest.48a388fb50cbd9be0e2dd831097a7d13e374608313a006fe9f9e66efe062d750.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d": 293392,
+  "nestStateBackfillMillis.nest.2fb0a39c3fe6893c50b7aaf0b0abbcbb8e94c2e8754d52420fcd4cc611fd4b3c.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d": 6377822,
+  "nestStateBackfillMillis.nest.3d98099a9b80fb99eb55244291465f78185e87171c42a861c421809eda072b34.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d": 9294381,
+  "nestStateBackfillMillis.nest.48a388fb50cbd9be0e2dd831097a7d13e374608313a006fe9f9e66efe062d750.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d": 4801287,
+  "nestStateBackfills.nest.2fb0a39c3fe6893c50b7aaf0b0abbcbb8e94c2e8754d52420fcd4cc611fd4b3c.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d": 97334,
+  "nestStateBackfills.nest.3d98099a9b80fb99eb55244291465f78185e87171c42a861c421809eda072b34.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d": 97334,
+  "nestStateBackfills.nest.48a388fb50cbd9be0e2dd831097a7d13e374608313a006fe9f9e66efe062d750.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d": 145528,
+  "nestStateEntries.nest.2fb0a39c3fe6893c50b7aaf0b0abbcbb8e94c2e8754d52420fcd4cc611fd4b3c.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d": 3794,
+  "nestStateEntries.nest.3d98099a9b80fb99eb55244291465f78185e87171c42a861c421809eda072b34.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d": 0,
+  "nestStateEntries.nest.48a388fb50cbd9be0e2dd831097a7d13e374608313a006fe9f9e66efe062d750.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d": 3794,
+  "nestStatePendingHighWater.nest.2fb0a39c3fe6893c50b7aaf0b0abbcbb8e94c2e8754d52420fcd4cc611fd4b3c.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d": 0,
+  "nestStatePendingHighWater.nest.3d98099a9b80fb99eb55244291465f78185e87171c42a861c421809eda072b34.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d": 0,
+  "nestStatePendingHighWater.nest.48a388fb50cbd9be0e2dd831097a7d13e374608313a006fe9f9e66efe062d750.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d": 4,
+  "recordCount": 94,
+  "records.in": 477947,
+  "snapshot.rows.read.BENCH_CUSTOMERS": 100000,
+  "snapshot.rows.read.BENCH_LINES": 386139,
+  "snapshot.rows.read.BENCH_ORDERS": 0
+ },
+ "targetAckedPosition": {
+  "BENCH_CUSTOMERS": "rO0ABXNyADNpby50YXBkYXRhLmNvbm5lY3Rvci5vcmFjbGUuY2RjLm9mZnNldC5PcmFjbGVPZmZzZXQUJN7C0aaHzAIACUkAA2Zub0wABmhleFNjbnQAEkxqYXZhL2xhbmcvU3RyaW5nO0wAB2xhc3RTY250ABBMamF2YS9sYW5nL0xvbmc7TAALb2Zmc2V0VmFsdWVxAH4AAkwADXBlbmRpbmdIZXhTY25xAH4AAUwACnBlbmRpbmdTY25xAH4AAkwAEHBlbmRpbmdUaW1lc3RhbXBxAH4AAkwACnNvcnRTdHJpbmdxAH4AAUwACXRpbWVzdGFtcHEAfgACeHAAAAAAcHNyAA5qYXZhLmxhbmcuTG9uZzuL5JDMjyPfAgABSgAFdmFsdWV4cgAQamF2YS5sYW5nLk51bWJlcoaslR0LlOCLAgAAeHAAAAAAGrZnZ3BwcHBwcA=="
+ },
+ "positionsNotCollected": [
+  "sourceHeadPosition",
+  "processedPosition"
+ ],
+ "facts": [
+  {
+   "name": "tapstate.pipeline.bytes",
+   "type": "counter",
+   "unit": "By",
+   "points": [
+    {
+     "attributes": {
+      "direction": "in",
+      "tapstate.pipeline.id": "bench_orders",
+      "tapstate.table.id": "BENCH_CUSTOMERS"
+     },
+     "startTime": "2026-10-31T09:39:38.406Z",
+     "observedAt": "2026-10-31T13:04:46.142Z",
+     "value": 5771124
+    },
+    {
+     "attributes": {
+      "direction": "in",
+      "tapstate.pipeline.id": "bench_orders",
+      "tapstate.table.id": "BENCH_LINES"
+     },
+     "startTime": "2026-10-31T09:39:38.406Z",
+     "observedAt": "2026-10-31T13:04:46.142Z",
+     "value": 17914912
+    }
+   ]
+  },
+  {
+   "name": "tapstate.pipeline.errors",
+   "type": "counter",
+   "unit": "{error}",
+   "points": [
+    {
+     "attributes": {
+      "code": "engine.job-failed",
+      "tapstate.pipeline.id": "bench_orders"
+     },
+     "startTime": "2026-10-31T09:07:51.783Z",
+     "observedAt": "2026-10-31T13:04:46.142Z",
+     "value": 1
+    }
+   ]
+  },
+  {
+   "name": "tapstate.pipeline.frontier.gap",
+   "type": "gauge",
+   "unit": "1",
+   "points": [
+    {
+     "attributes": {
+      "tapstate.chain.id": "BENCH_CUSTOMERS",
+      "tapstate.pipeline.id": "bench_orders"
+     },
+     "observedAt": "2026-10-31T13:04:46.142Z",
+     "value": 0
+    }
+   ]
+  },
+  {
+   "name": "tapstate.pipeline.frontier.stall",
+   "type": "gauge",
+   "unit": "ms",
+   "points": [
+    {
+     "attributes": {
+      "tapstate.chain.id": "BENCH_CUSTOMERS",
+      "tapstate.pipeline.id": "bench_orders"
+     },
+     "observedAt": "2026-10-31T13:04:46.142Z",
+     "value": 0
+    }
+   ]
+  },
+  {
+   "name": "tapstate.pipeline.nest.accesses",
+   "type": "gauge",
+   "unit": "{access}",
+   "points": [
+    {
+     "attributes": {
+      "tapstate.nest.namespace": "nest.2fb0a39c3fe6893c50b7aaf0b0abbcbb8e94c2e8754d52420fcd4cc611fd4b3c.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d",
+      "tapstate.pipeline.id": "bench_orders"
+     },
+     "observedAt": "2026-10-31T13:04:46.142Z",
+     "value": 106250
+    },
+    {
+     "attributes": {
+      "tapstate.nest.namespace": "nest.3d98099a9b80fb99eb55244291465f78185e87171c42a861c421809eda072b34.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d",
+      "tapstate.pipeline.id": "bench_orders"
+     },
+     "observedAt": "2026-10-31T13:04:46.142Z",
+     "value": 6250
+    },
+    {
+     "attributes": {
+      "tapstate.nest.namespace": "nest.48a388fb50cbd9be0e2dd831097a7d13e374608313a006fe9f9e66efe062d750.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d",
+      "tapstate.pipeline.id": "bench_orders"
+     },
+     "observedAt": "2026-10-31T13:04:46.142Z",
+     "value": 293392
+    }
+   ]
+  },
+  {
+   "name": "tapstate.pipeline.nest.backfill.time",
+   "type": "gauge",
+   "unit": "ms",
+   "points": [
+    {
+     "attributes": {
+      "tapstate.nest.namespace": "nest.2fb0a39c3fe6893c50b7aaf0b0abbcbb8e94c2e8754d52420fcd4cc611fd4b3c.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d",
+      "tapstate.pipeline.id": "bench_orders"
+     },
+     "observedAt": "2026-10-31T13:04:46.142Z",
+     "value": 6377822
+    },
+    {
+     "attributes": {
+      "tapstate.nest.namespace": "nest.3d98099a9b80fb99eb55244291465f78185e87171c42a861c421809eda072b34.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d",
+      "tapstate.pipeline.id": "bench_orders"
+     },
+     "observedAt": "2026-10-31T13:04:46.142Z",
+     "value": 9294381
+    },
+    {
+     "attributes": {
+      "tapstate.nest.namespace": "nest.48a388fb50cbd9be0e2dd831097a7d13e374608313a006fe9f9e66efe062d750.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d",
+      "tapstate.pipeline.id": "bench_orders"
+     },
+     "observedAt": "2026-10-31T13:04:46.142Z",
+     "value": 4801287
+    }
+   ]
+  },
+  {
+   "name": "tapstate.pipeline.nest.backfills",
+   "type": "gauge",
+   "unit": "{backfill}",
+   "points": [
+    {
+     "attributes": {
+      "tapstate.nest.namespace": "nest.2fb0a39c3fe6893c50b7aaf0b0abbcbb8e94c2e8754d52420fcd4cc611fd4b3c.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d",
+      "tapstate.pipeline.id": "bench_orders"
+     },
+     "observedAt": "2026-10-31T13:04:46.142Z",
+     "value": 97334
+    },
+    {
+     "attributes": {
+      "tapstate.nest.namespace": "nest.3d98099a9b80fb99eb55244291465f78185e87171c42a861c421809eda072b34.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d",
+      "tapstate.pipeline.id": "bench_orders"
+     },
+     "observedAt": "2026-10-31T13:04:46.142Z",
+     "value": 97334
+    },
+    {
+     "attributes": {
+      "tapstate.nest.namespace": "nest.48a388fb50cbd9be0e2dd831097a7d13e374608313a006fe9f9e66efe062d750.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d",
+      "tapstate.pipeline.id": "bench_orders"
+     },
+     "observedAt": "2026-10-31T13:04:46.142Z",
+     "value": 145528
+    }
+   ]
+  },
+  {
+   "name": "tapstate.pipeline.nest.entries",
+   "type": "gauge",
+   "unit": "{entry}",
+   "points": [
+    {
+     "attributes": {
+      "tapstate.nest.namespace": "nest.2fb0a39c3fe6893c50b7aaf0b0abbcbb8e94c2e8754d52420fcd4cc611fd4b3c.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d",
+      "tapstate.pipeline.id": "bench_orders"
+     },
+     "observedAt": "2026-10-31T13:04:46.142Z",
+     "value": 3794
+    },
+    {
+     "attributes": {
+      "tapstate.nest.namespace": "nest.3d98099a9b80fb99eb55244291465f78185e87171c42a861c421809eda072b34.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d",
+      "tapstate.pipeline.id": "bench_orders"
+     },
+     "observedAt": "2026-10-31T13:04:46.142Z",
+     "value": 0
+    },
+    {
+     "attributes": {
+      "tapstate.nest.namespace": "nest.48a388fb50cbd9be0e2dd831097a7d13e374608313a006fe9f9e66efe062d750.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d",
+      "tapstate.pipeline.id": "bench_orders"
+     },
+     "observedAt": "2026-10-31T13:04:46.142Z",
+     "value": 3794
+    }
+   ]
+  },
+  {
+   "name": "tapstate.pipeline.nest.pending.high_water",
+   "type": "gauge",
+   "unit": "{record}",
+   "points": [
+    {
+     "attributes": {
+      "tapstate.nest.namespace": "nest.2fb0a39c3fe6893c50b7aaf0b0abbcbb8e94c2e8754d52420fcd4cc611fd4b3c.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d",
+      "tapstate.pipeline.id": "bench_orders"
+     },
+     "observedAt": "2026-10-31T13:04:46.142Z",
+     "value": 0
+    },
+    {
+     "attributes": {
+      "tapstate.nest.namespace": "nest.3d98099a9b80fb99eb55244291465f78185e87171c42a861c421809eda072b34.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d",
+      "tapstate.pipeline.id": "bench_orders"
+     },
+     "observedAt": "2026-10-31T13:04:46.142Z",
+     "value": 0
+    },
+    {
+     "attributes": {
+      "tapstate.nest.namespace": "nest.48a388fb50cbd9be0e2dd831097a7d13e374608313a006fe9f9e66efe062d750.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d",
+      "tapstate.pipeline.id": "bench_orders"
+     },
+     "observedAt": "2026-10-31T13:04:46.142Z",
+     "value": 4
+    }
+   ]
+  },
+  {
+   "name": "tapstate.pipeline.process.duration",
+   "type": "histogram",
+   "unit": "s",
+   "points": [
+    {
+     "attributes": {
+      "stage": "nest",
+      "tapstate.pipeline.id": "bench_orders"
+     },
+     "startTime": "2026-10-31T09:39:38.417Z",
+     "observedAt": "2026-10-31T13:04:46.142Z",
+     "count": 555,
+     "sum": 12567.284905,
+     "bounds": [
+      0.0001,
+      0.00025,
+      0.0005,
+      0.001,
+      0.0025,
+      0.005,
+      0.01,
+      0.025,
+      0.05,
+      0.1,
+      0.25,
+      0.5,
+      1.0,
+      2.5,
+      5.0,
+      10.0
+     ],
+     "bucketCounts": [
+      80,
+      10,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      460
+     ]
+    },
+    {
+     "attributes": {
+      "stage": "sink",
+      "tapstate.pipeline.id": "bench_orders"
+     },
+     "startTime": "2026-10-31T09:39:38.417Z",
+     "observedAt": "2026-10-31T13:04:46.142Z",
+     "count": 94,
+     "sum": 0.006563,
+     "bounds": [
+      0.0001,
+      0.00025,
+      0.0005,
+      0.001,
+      0.0025,
+      0.005,
+      0.01,
+      0.025,
+      0.05,
+      0.1,
+      0.25,
+      0.5,
+      1.0,
+      2.5,
+      5.0,
+      10.0
+     ],
+     "bucketCounts": [
+      89,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "attributes": {
+      "stage": "source",
+      "tapstate.pipeline.id": "bench_orders"
+     },
+     "startTime": "2026-10-31T09:39:38.417Z",
+     "observedAt": "2026-10-31T13:04:46.142Z",
+     "count": 198,
+     "sum": 0.478619,
+     "bounds": [
+      0.0001,
+      0.00025,
+      0.0005,
+      0.001,
+      0.0025,
+      0.005,
+      0.01,
+      0.025,
+      0.05,
+      0.1,
+      0.25,
+      0.5,
+      1.0,
+      2.5,
+      5.0,
+      10.0
+     ],
+     "bucketCounts": [
+      138,
+      1,
+      1,
+      0,
+      0,
+      2,
+      52,
+      2,
+      0,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "name": "tapstate.pipeline.records",
+   "type": "counter",
+   "unit": "{record}",
+   "points": [
+    {
+     "attributes": {
+      "direction": "in",
+      "op": "read",
+      "tapstate.pipeline.id": "bench_orders",
+      "tapstate.table.id": "BENCH_CUSTOMERS"
+     },
+     "startTime": "2026-10-31T09:39:38.406Z",
+     "observedAt": "2026-10-31T13:04:46.142Z",
+     "value": 100000
+    },
+    {
+     "attributes": {
+      "direction": "in",
+      "op": "read",
+      "tapstate.pipeline.id": "bench_orders",
+      "tapstate.table.id": "BENCH_LINES"
+     },
+     "startTime": "2026-10-31T09:39:38.406Z",
+     "observedAt": "2026-10-31T13:04:46.142Z",
+     "value": 377947
+    }
+   ]
+  },
+  {
+   "name": "tapstate.pipeline.records.driven",
+   "type": "gauge",
+   "unit": "{record}",
+   "points": [
+    {
+     "attributes": {
+      "tapstate.pipeline.id": "bench_orders"
+     },
+     "observedAt": "2026-10-31T13:04:46.142Z",
+     "value": 94
+    }
+   ]
+  },
+  {
+   "name": "tapstate.pipeline.snapshot.rows",
+   "type": "counter",
+   "unit": "{row}",
+   "points": [
+    {
+     "attributes": {
+      "tapstate.pipeline.id": "bench_orders",
+      "tapstate.table.id": "BENCH_CUSTOMERS"
+     },
+     "startTime": "2026-10-31T09:39:16.767Z",
+     "observedAt": "2026-10-31T13:04:46.142Z",
+     "value": 100000
+    }
+   ]
+  },
+  {
+   "name": "tapstate.pipeline.snapshot.rows.current_run",
+   "type": "counter",
+   "unit": "{row}",
+   "points": [
+    {
+     "attributes": {
+      "tapstate.pipeline.id": "bench_orders",
+      "tapstate.table.id": "BENCH_CUSTOMERS"
+     },
+     "startTime": "2026-10-31T09:39:16.767Z",
+     "observedAt": "2026-10-31T13:04:46.142Z",
+     "value": 100000
+    },
+    {
+     "attributes": {
+      "tapstate.pipeline.id": "bench_orders",
+      "tapstate.table.id": "BENCH_LINES"
+     },
+     "startTime": "2026-10-31T09:39:16.767Z",
+     "observedAt": "2026-10-31T13:04:46.142Z",
+     "value": 386139
+    },
+    {
+     "attributes": {
+      "tapstate.pipeline.id": "bench_orders",
+      "tapstate.table.id": "BENCH_ORDERS"
+     },
+     "startTime": "2026-10-31T09:39:16.767Z",
+     "observedAt": "2026-10-31T13:04:46.142Z",
+     "value": 0
+    }
+   ]
+  },
+  {
+   "name": "tapstate.pipeline.snapshot.rows.total",
+   "type": "gauge",
+   "unit": "{row}",
+   "points": [
+    {
+     "attributes": {
+      "tapstate.pipeline.id": "bench_orders",
+      "tapstate.table.id": "BENCH_CUSTOMERS"
+     },
+     "observedAt": "2026-10-31T13:04:46.142Z",
+     "value": 100000
+    }
+   ]
+  }
+ ]
+}
