@@ -1,15 +1,15 @@
 # Confluent Cloud
 
-Route: Oracle XStream CDC Source Premium (fallback: Oracle CDC Source Premium, LogMiner based)
-to three topics, a Flink SQL statement that joins and aggregates them into an upsert table with a
+Route: Oracle CDC Source Premium (LogMiner based) to three topics, a Flink SQL statement that joins and aggregates them into an upsert table with a
 nested schema, and the MongoDB Atlas Sink connector writing that table as documents.
 
 Files:
 
 | File | Purpose |
 |---|---|
-| `oracle-prereqs-rds.sql` | Oracle-side setup for the XStream connector on Amazon RDS for Oracle (run as the master user, then as the XStream admin) |
-| `source-connector.json` | Oracle XStream CDC Source configuration, secrets redacted |
+| `source-connector.json` | Oracle CDC Source Premium (LogMiner) configuration used in the published runs, secrets redacted |
+| `oracle-prereqs-sys.sql` | Oracle-side setup Confluent documents for the LogMiner connector (needs SYS) |
+| `oracle-prereqs-rds.sql` | Oracle-side setup for the XStream connector on Amazon RDS for Oracle, the documented alternative route (not used in the published runs) |
 | `flink.sql` | the Flink SQL statements that build the nested document table |
 | `atlas-sink.json` | MongoDB Atlas Sink configuration |
 
@@ -32,3 +32,12 @@ Known properties to verify during the run (from Confluent's documentation at the
 - The XStream connector runs a single task.
 - Deletes reach Atlas as tombstones on the upsert topic; the sink needs `delete.on.null.values=true`
   and a key-based document id strategy.
+
+Settings that decided the published Tier B result:
+
+| Setting | Default | Used | Effect |
+|---|---|---|---|
+| Source `tasks.max` | 1 | 2 at Tier B | with more than one task, pre-create the redo-log topic (`redo.log.topic.name`, 1 partition) before creating the connector; otherwise the redo-log task fails with `USER_ACTIONABLE_ERROR` because the topic is only created when mining starts after the snapshot |
+| Atlas sink `tasks.max` | 1 | 1, then 6 (one per partition of the document topic) | at 200 changes per second one task writes about 175 per second and the backlog drains 38 min after the load; six tasks keep the backlog under 52 k and drain in about 2 min |
+
+Run the default first and then the tuned sink, and publish both results.
