@@ -9,5 +9,7 @@ Setup order and what to record:
 1. Oracle prerequisites: ARCHIVELOG, supplemental logging on the three tables (done by
    `python -m bench seed --supplemental-logging`), a user with LogMiner read access.
 2. Cluster, Oracle source with connection test, Atlas destination with connection test.
-3. Pipeline from `pipeline.json`, started in snapshot-and-CDC mode.
+3. Pipeline from `pipeline.json`, started in snapshot-and-CDC mode (the default read mode). The
+   target collection takes the root table's name (`BENCH_ORDERS`), in the database named by the
+   Atlas destination URI; the runs here use `cr_tapstate`.
 4. Record the first correct document time (`bench lag`).

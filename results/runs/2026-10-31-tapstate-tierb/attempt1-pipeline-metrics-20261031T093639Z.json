@@ -1,0 +1,28 @@
+{
+ "pipelineId": "bench_orders",
+ "metrics": {
+  "errors.engine.job-failed": 1
+ },
+ "positionsNotCollected": [
+  "sourceHeadPosition",
+  "processedPosition"
+ ],
+ "facts": [
+  {
+   "name": "tapstate.pipeline.errors",
+   "type": "counter",
+   "unit": "{error}",
+   "points": [
+    {
+     "attributes": {
+      "code": "engine.job-failed",
+      "tapstate.pipeline.id": "bench_orders"
+     },
+     "startTime": "2026-10-31T09:07:51.783Z",
+     "observedAt": "2026-10-31T09:36:37.397Z",
+     "value": 1
+    }
+   ]
+  }
+ ]
+}

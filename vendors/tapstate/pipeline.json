@@ -12,7 +12,6 @@
   }],
   "serve": {"from": "order_doc", "sync": [{
     "id": "bench_orders_to_atlas", "source": "<atlas-destination-id>",
-    "write_mode": "upsert", "on_full_load": "clear",
-    "database": "cr_tapstate", "collection": "orders"
+    "write_mode": "upsert", "on_full_load": "clear"
   }]}
 }
