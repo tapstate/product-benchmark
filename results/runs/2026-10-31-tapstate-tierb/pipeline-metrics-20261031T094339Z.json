@@ -1,0 +1,406 @@
+{
+ "pipelineId": "bench_orders",
+ "metrics": {
+  "bytes.in": 926969,
+  "errors.engine.job-failed": 1,
+  "frontierStalledMillis.BENCH_CUSTOMERS": 215504,
+  "nestStateAccesses.nest.2fb0a39c3fe6893c50b7aaf0b0abbcbb8e94c2e8754d52420fcd4cc611fd4b3c.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d": 13822,
+  "nestStateAccesses.nest.3d98099a9b80fb99eb55244291465f78185e87171c42a861c421809eda072b34.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d": 813,
+  "nestStateBackfillMillis.nest.2fb0a39c3fe6893c50b7aaf0b0abbcbb8e94c2e8754d52420fcd4cc611fd4b3c.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d": 843551,
+  "nestStateBackfillMillis.nest.3d98099a9b80fb99eb55244291465f78185e87171c42a861c421809eda072b34.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d": 1219346,
+  "nestStateBackfills.nest.2fb0a39c3fe6893c50b7aaf0b0abbcbb8e94c2e8754d52420fcd4cc611fd4b3c.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d": 12688,
+  "nestStateBackfills.nest.3d98099a9b80fb99eb55244291465f78185e87171c42a861c421809eda072b34.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d": 12672,
+  "nestStateEntries.nest.2fb0a39c3fe6893c50b7aaf0b0abbcbb8e94c2e8754d52420fcd4cc611fd4b3c.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d": 3794,
+  "nestStateEntries.nest.3d98099a9b80fb99eb55244291465f78185e87171c42a861c421809eda072b34.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d": 0,
+  "nestStatePendingHighWater.nest.2fb0a39c3fe6893c50b7aaf0b0abbcbb8e94c2e8754d52420fcd4cc611fd4b3c.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d": 0,
+  "nestStatePendingHighWater.nest.3d98099a9b80fb99eb55244291465f78185e87171c42a861c421809eda072b34.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d": 0,
+  "recordCount": 12,
+  "records.in": 16384,
+  "snapshot.rows.read.BENCH_CUSTOMERS": 24576,
+  "snapshot.rows.read.BENCH_LINES": 0,
+  "snapshot.rows.read.BENCH_ORDERS": 0
+ },
+ "positionsNotCollected": [
+  "sourceHeadPosition",
+  "processedPosition"
+ ],
+ "facts": [
+  {
+   "name": "tapstate.pipeline.bytes",
+   "type": "counter",
+   "unit": "By",
+   "points": [
+    {
+     "attributes": {
+      "direction": "in",
+      "tapstate.pipeline.id": "bench_orders",
+      "tapstate.table.id": "BENCH_CUSTOMERS"
+     },
+     "startTime": "2026-10-31T09:39:38.406Z",
+     "observedAt": "2026-10-31T09:43:38.248Z",
+     "value": 926969
+    }
+   ]
+  },
+  {
+   "name": "tapstate.pipeline.errors",
+   "type": "counter",
+   "unit": "{error}",
+   "points": [
+    {
+     "attributes": {
+      "code": "engine.job-failed",
+      "tapstate.pipeline.id": "bench_orders"
+     },
+     "startTime": "2026-10-31T09:07:51.783Z",
+     "observedAt": "2026-10-31T09:43:38.248Z",
+     "value": 1
+    }
+   ]
+  },
+  {
+   "name": "tapstate.pipeline.frontier.stall",
+   "type": "gauge",
+   "unit": "ms",
+   "points": [
+    {
+     "attributes": {
+      "tapstate.chain.id": "BENCH_CUSTOMERS",
+      "tapstate.pipeline.id": "bench_orders"
+     },
+     "observedAt": "2026-10-31T09:43:38.248Z",
+     "value": 215504
+    }
+   ]
+  },
+  {
+   "name": "tapstate.pipeline.nest.accesses",
+   "type": "gauge",
+   "unit": "{access}",
+   "points": [
+    {
+     "attributes": {
+      "tapstate.nest.namespace": "nest.2fb0a39c3fe6893c50b7aaf0b0abbcbb8e94c2e8754d52420fcd4cc611fd4b3c.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d",
+      "tapstate.pipeline.id": "bench_orders"
+     },
+     "observedAt": "2026-10-31T09:43:38.248Z",
+     "value": 13822
+    },
+    {
+     "attributes": {
+      "tapstate.nest.namespace": "nest.3d98099a9b80fb99eb55244291465f78185e87171c42a861c421809eda072b34.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d",
+      "tapstate.pipeline.id": "bench_orders"
+     },
+     "observedAt": "2026-10-31T09:43:38.248Z",
+     "value": 813
+    }
+   ]
+  },
+  {
+   "name": "tapstate.pipeline.nest.backfill.time",
+   "type": "gauge",
+   "unit": "ms",
+   "points": [
+    {
+     "attributes": {
+      "tapstate.nest.namespace": "nest.2fb0a39c3fe6893c50b7aaf0b0abbcbb8e94c2e8754d52420fcd4cc611fd4b3c.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d",
+      "tapstate.pipeline.id": "bench_orders"
+     },
+     "observedAt": "2026-10-31T09:43:38.248Z",
+     "value": 843551
+    },
+    {
+     "attributes": {
+      "tapstate.nest.namespace": "nest.3d98099a9b80fb99eb55244291465f78185e87171c42a861c421809eda072b34.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d",
+      "tapstate.pipeline.id": "bench_orders"
+     },
+     "observedAt": "2026-10-31T09:43:38.248Z",
+     "value": 1219346
+    }
+   ]
+  },
+  {
+   "name": "tapstate.pipeline.nest.backfills",
+   "type": "gauge",
+   "unit": "{backfill}",
+   "points": [
+    {
+     "attributes": {
+      "tapstate.nest.namespace": "nest.2fb0a39c3fe6893c50b7aaf0b0abbcbb8e94c2e8754d52420fcd4cc611fd4b3c.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d",
+      "tapstate.pipeline.id": "bench_orders"
+     },
+     "observedAt": "2026-10-31T09:43:38.248Z",
+     "value": 12688
+    },
+    {
+     "attributes": {
+      "tapstate.nest.namespace": "nest.3d98099a9b80fb99eb55244291465f78185e87171c42a861c421809eda072b34.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d",
+      "tapstate.pipeline.id": "bench_orders"
+     },
+     "observedAt": "2026-10-31T09:43:38.248Z",
+     "value": 12672
+    }
+   ]
+  },
+  {
+   "name": "tapstate.pipeline.nest.entries",
+   "type": "gauge",
+   "unit": "{entry}",
+   "points": [
+    {
+     "attributes": {
+      "tapstate.nest.namespace": "nest.2fb0a39c3fe6893c50b7aaf0b0abbcbb8e94c2e8754d52420fcd4cc611fd4b3c.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d",
+      "tapstate.pipeline.id": "bench_orders"
+     },
+     "observedAt": "2026-10-31T09:43:38.248Z",
+     "value": 3794
+    },
+    {
+     "attributes": {
+      "tapstate.nest.namespace": "nest.3d98099a9b80fb99eb55244291465f78185e87171c42a861c421809eda072b34.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d",
+      "tapstate.pipeline.id": "bench_orders"
+     },
+     "observedAt": "2026-10-31T09:43:38.248Z",
+     "value": 0
+    }
+   ]
+  },
+  {
+   "name": "tapstate.pipeline.nest.pending.high_water",
+   "type": "gauge",
+   "unit": "{record}",
+   "points": [
+    {
+     "attributes": {
+      "tapstate.nest.namespace": "nest.2fb0a39c3fe6893c50b7aaf0b0abbcbb8e94c2e8754d52420fcd4cc611fd4b3c.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d",
+      "tapstate.pipeline.id": "bench_orders"
+     },
+     "observedAt": "2026-10-31T09:43:38.248Z",
+     "value": 0
+    },
+    {
+     "attributes": {
+      "tapstate.nest.namespace": "nest.3d98099a9b80fb99eb55244291465f78185e87171c42a861c421809eda072b34.run.c22d7a1d07b5ba322156481899b349df110ffd2635ac8f928cea30849124f46d",
+      "tapstate.pipeline.id": "bench_orders"
+     },
+     "observedAt": "2026-10-31T09:43:38.248Z",
+     "value": 0
+    }
+   ]
+  },
+  {
+   "name": "tapstate.pipeline.process.duration",
+   "type": "histogram",
+   "unit": "s",
+   "points": [
+    {
+     "attributes": {
+      "stage": "nest",
+      "tapstate.pipeline.id": "bench_orders"
+     },
+     "startTime": "2026-10-31T09:39:38.417Z",
+     "observedAt": "2026-10-31T09:43:38.248Z",
+     "count": 24,
+     "sum": 221.925272,
+     "bounds": [
+      0.0001,
+      0.00025,
+      0.0005,
+      0.001,
+      0.0025,
+      0.005,
+      0.01,
+      0.025,
+      0.05,
+      0.1,
+      0.25,
+      0.5,
+      1.0,
+      2.5,
+      5.0,
+      10.0
+     ],
+     "bucketCounts": [
+      11,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      12
+     ]
+    },
+    {
+     "attributes": {
+      "stage": "sink",
+      "tapstate.pipeline.id": "bench_orders"
+     },
+     "startTime": "2026-10-31T09:39:38.417Z",
+     "observedAt": "2026-10-31T09:43:38.248Z",
+     "count": 12,
+     "sum": 0.000957,
+     "bounds": [
+      0.0001,
+      0.00025,
+      0.0005,
+      0.001,
+      0.0025,
+      0.005,
+      0.01,
+      0.025,
+      0.05,
+      0.1,
+      0.25,
+      0.5,
+      1.0,
+      2.5,
+      5.0,
+      10.0
+     ],
+     "bucketCounts": [
+      10,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "attributes": {
+      "stage": "source",
+      "tapstate.pipeline.id": "bench_orders"
+     },
+     "startTime": "2026-10-31T09:39:38.417Z",
+     "observedAt": "2026-10-31T09:43:38.248Z",
+     "count": 1,
+     "sum": 0.006013,
+     "bounds": [
+      0.0001,
+      0.00025,
+      0.0005,
+      0.001,
+      0.0025,
+      0.005,
+      0.01,
+      0.025,
+      0.05,
+      0.1,
+      0.25,
+      0.5,
+      1.0,
+      2.5,
+      5.0,
+      10.0
+     ],
+     "bucketCounts": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "name": "tapstate.pipeline.records",
+   "type": "counter",
+   "unit": "{record}",
+   "points": [
+    {
+     "attributes": {
+      "direction": "in",
+      "op": "read",
+      "tapstate.pipeline.id": "bench_orders",
+      "tapstate.table.id": "BENCH_CUSTOMERS"
+     },
+     "startTime": "2026-10-31T09:39:38.406Z",
+     "observedAt": "2026-10-31T09:43:38.248Z",
+     "value": 16384
+    }
+   ]
+  },
+  {
+   "name": "tapstate.pipeline.records.driven",
+   "type": "gauge",
+   "unit": "{record}",
+   "points": [
+    {
+     "attributes": {
+      "tapstate.pipeline.id": "bench_orders"
+     },
+     "observedAt": "2026-10-31T09:43:38.248Z",
+     "value": 12
+    }
+   ]
+  },
+  {
+   "name": "tapstate.pipeline.snapshot.rows.current_run",
+   "type": "counter",
+   "unit": "{row}",
+   "points": [
+    {
+     "attributes": {
+      "tapstate.pipeline.id": "bench_orders",
+      "tapstate.table.id": "BENCH_CUSTOMERS"
+     },
+     "startTime": "2026-10-31T09:39:16.767Z",
+     "observedAt": "2026-10-31T09:43:38.248Z",
+     "value": 24576
+    },
+    {
+     "attributes": {
+      "tapstate.pipeline.id": "bench_orders",
+      "tapstate.table.id": "BENCH_LINES"
+     },
+     "startTime": "2026-10-31T09:39:16.767Z",
+     "observedAt": "2026-10-31T09:43:38.248Z",
+     "value": 0
+    },
+    {
+     "attributes": {
+      "tapstate.pipeline.id": "bench_orders",
+      "tapstate.table.id": "BENCH_ORDERS"
+     },
+     "startTime": "2026-10-31T09:39:16.767Z",
+     "observedAt": "2026-10-31T09:43:38.248Z",
+     "value": 0
+    }
+   ]
+  }
+ ]
+}
