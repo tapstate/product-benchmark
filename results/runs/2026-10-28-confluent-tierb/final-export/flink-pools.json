@@ -1,0 +1,14 @@
+[
+  {
+    "is_current": true,
+    "id": "lfcp-6kyo5v6",
+    "name": "AWS.ap-east-1.env-o7mjwj.1591",
+    "cloud": "AWS",
+    "environment": "env-o7mjwj",
+    "max_cfu": 10,
+    "region": "ap-east-1",
+    "currrent_cfu": 4,
+    "status": "PROVISIONED",
+    "default_pool": false
+  }
+]

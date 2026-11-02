@@ -1,0 +1,14 @@
+[
+  {
+    "is_current": true,
+    "id": "lkc-57ymkpz",
+    "name": "cluster_0",
+    "type": "STANDARD",
+    "cloud": "aws",
+    "region": "ap-east-1",
+    "availability": "low",
+    "status": "UP",
+    "deletion_protection": false,
+    "endpoint": "SASL_SSL://pkc-817wq.ap-east-1.aws.confluent.cloud:9092"
+  }
+]

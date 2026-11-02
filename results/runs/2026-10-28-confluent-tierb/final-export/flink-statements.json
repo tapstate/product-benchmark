@@ -1,0 +1,92 @@
+[
+  {
+    "creation_date": "2026-10-28T08:16:04.65554Z",
+    "name": "b-create-customers-cur",
+    "statement": "CREATE TABLE customers_cur (CUSTOMER_ID DECIMAL(10,0), NAME STRING, TIER STRING, CREATED TIMESTAMP_LTZ(3), PRIMARY KEY (CUSTOMER_ID) NOT ENFORCED) WITH ('changelog.mode' = 'upsert');",
+    "compute_pool": "lfcp-6kyo5v6",
+    "status": "COMPLETED",
+    "status_detail": "Command completed successfully.",
+    "latest_offsets": null,
+    "latest_offsets_timestamp": "0001-01-01T00:00:00Z"
+  },
+  {
+    "creation_date": "2026-10-28T08:16:08.479456Z",
+    "name": "b-create-orders-cur",
+    "statement": "CREATE TABLE orders_cur (ORDER_ID DECIMAL(10,0), CUSTOMER_ID DECIMAL(10,0), STATUS STRING, ORDER_TS TIMESTAMP_LTZ(3), PRIMARY KEY (ORDER_ID) NOT ENFORCED) WITH ('changelog.mode' = 'upsert');",
+    "compute_pool": "lfcp-6kyo5v6",
+    "status": "COMPLETED",
+    "status_detail": "Command completed successfully.",
+    "latest_offsets": null,
+    "latest_offsets_timestamp": "0001-01-01T00:00:00Z"
+  },
+  {
+    "creation_date": "2026-10-28T08:16:12.453619Z",
+    "name": "b-create-lines-cur",
+    "statement": "CREATE TABLE lines_cur (ORDER_ID DECIMAL(10,0), LINE_NO DECIMAL(10,0), SKU STRING, QTY DECIMAL(10,0), PRICE DECIMAL(18,4), PRIMARY KEY (ORDER_ID, LINE_NO) NOT ENFORCED) WITH ('changelog.mode' = 'upsert');",
+    "compute_pool": "lfcp-6kyo5v6",
+    "status": "COMPLETED",
+    "status_detail": "Command completed successfully.",
+    "latest_offsets": null,
+    "latest_offsets_timestamp": "0001-01-01T00:00:00Z"
+  },
+  {
+    "creation_date": "2026-10-28T08:16:16.218603Z",
+    "name": "b-create-order-doc",
+    "statement": "CREATE TABLE order_doc (ORDER_ID INT, CUSTOMER_ID INT, STATUS STRING, ORDER_TS TIMESTAMP_LTZ(3), customer ROW\u003cCUSTOMER_ID INT, NAME STRING, TIER STRING, CREATED TIMESTAMP_LTZ(3)\u003e, lines ARRAY\u003cROW\u003cLINE_NO INT, SKU STRING, QTY INT, PRICE DECIMAL(18, 4)\u003e\u003e, PRIMARY KEY (ORDER_ID) NOT ENFORCED) WITH ('changelog.mode' = 'upsert', 'key.format' = 'avro-registry', 'value.format' = 'avro-registry', 'value.fields-include' = 'all');",
+    "compute_pool": "lfcp-6kyo5v6",
+    "status": "COMPLETED",
+    "status_detail": "Command completed successfully.",
+    "latest_offsets": null,
+    "latest_offsets_timestamp": "0001-01-01T00:00:00Z"
+  },
+  {
+    "creation_date": "2026-10-28T08:16:21.265999Z",
+    "name": "b-ins-customers-cur",
+    "statement": "INSERT INTO customers_cur SELECT CUSTOMER_ID, NAME, TIER, CREATED FROM FROM_CHANGELOG(input =\u003e TABLE `bench.BENCH_CUSTOMERS` PARTITION BY CUSTOMER_ID, op =\u003e DESCRIPTOR(op_type), op_mapping =\u003e MAP['R, I','INSERT', 'U','UPDATE_AFTER', 'D','DELETE']);",
+    "compute_pool": "lfcp-6kyo5v6",
+    "status": "RUNNING",
+    "latest_offsets": null,
+    "latest_offsets_timestamp": "0001-01-01T00:00:00Z"
+  },
+  {
+    "creation_date": "2026-10-28T08:16:30.289133Z",
+    "name": "b-ins-orders-cur",
+    "statement": "INSERT INTO orders_cur SELECT ORDER_ID, CUSTOMER_ID, STATUS, ORDER_TS FROM FROM_CHANGELOG(input =\u003e TABLE `bench.BENCH_ORDERS` PARTITION BY ORDER_ID, op =\u003e DESCRIPTOR(op_type), op_mapping =\u003e MAP['R, I','INSERT', 'U','UPDATE_AFTER', 'D','DELETE']);",
+    "compute_pool": "lfcp-6kyo5v6",
+    "status": "RUNNING",
+    "latest_offsets": null,
+    "latest_offsets_timestamp": "0001-01-01T00:00:00Z"
+  },
+  {
+    "creation_date": "2026-10-28T08:16:37.576869Z",
+    "name": "b-ins-lines-cur",
+    "statement": "INSERT INTO lines_cur SELECT ORDER_ID, LINE_NO, SKU, QTY, PRICE FROM FROM_CHANGELOG(input =\u003e TABLE `bench.BENCH_LINES` PARTITION BY (ORDER_ID, LINE_NO), op =\u003e DESCRIPTOR(op_type), op_mapping =\u003e MAP['R, I','INSERT', 'U','UPDATE_AFTER', 'D','DELETE']);",
+    "compute_pool": "lfcp-6kyo5v6",
+    "status": "RUNNING",
+    "latest_offsets": null,
+    "latest_offsets_timestamp": "0001-01-01T00:00:00Z"
+  },
+  {
+    "creation_date": "2026-10-28T08:16:51.055691Z",
+    "name": "b-ins-order-doc",
+    "statement": "INSERT INTO order_doc SELECT CAST(o.ORDER_ID AS INT), CAST(o.CUSTOMER_ID AS INT), o.STATUS, o.ORDER_TS, CASE WHEN c.CUSTOMER_ID IS NULL THEN CAST(NULL AS ROW\u003cCUSTOMER_ID INT, NAME STRING, TIER STRING, CREATED TIMESTAMP_LTZ(3)\u003e) ELSE ROW(CAST(c.CUSTOMER_ID AS INT), c.NAME, c.TIER, c.CREATED) END, l.lines FROM orders_cur o LEFT JOIN customers_cur c ON c.CUSTOMER_ID = o.CUSTOMER_ID LEFT JOIN (SELECT ORDER_ID, ARRAY_AGG(ROW(CAST(LINE_NO AS INT), SKU, CAST(QTY AS INT), PRICE)) AS lines FROM lines_cur GROUP BY ORDER_ID) l ON l.ORDER_ID = o.ORDER_ID;",
+    "compute_pool": "lfcp-6kyo5v6",
+    "status": "RUNNING",
+    "warnings": [
+      {
+        "severity": "CRITICAL",
+        "reason": "UPSERT_AND_PRIMARY_KEYS_DIFFERENT",
+        "message": "The primary key does not match the upsert key derived from the query. If the primary key and upsert key don't match, the system needs to add a state-intensive operation for correction. Please revisit the query, as it currently does not produce any upsert key. Grouping, partitioning, and joining operations should reference the upsert keys of the source tables. For more information, see https://cnfl.io/primary_vs_upsert_key.",
+        "created_at": "2026-10-28T08:16:51.391813627Z"
+      },
+      {
+        "severity": "CRITICAL",
+        "reason": "HIGH_STATE_OPERATOR_WITHOUT_TTL",
+        "message": "Your query includes one or more highly state-intensive operators but does not set a time-to-live (TTL) value, which means that the system potentially needs to store an infinite amount of state. This can result in a DEGRADED statement and higher CFU consumption. If possible, change your query to use a different operator, or set a time-to-live (TTL) value. For more information, see https://cnfl.io/high_state_intensive_operators.",
+        "created_at": "2026-10-28T08:16:51.391813627Z"
+      }
+    ],
+    "latest_offsets": null,
+    "latest_offsets_timestamp": "0001-01-01T00:00:00Z"
+  }
+]

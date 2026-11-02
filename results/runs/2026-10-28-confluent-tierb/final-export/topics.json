@@ -1,0 +1,74 @@
+[
+  {
+    "name": "bench-redo-log",
+    "is_internal": false,
+    "replication_factor": 3,
+    "partition_count": 1
+  },
+  {
+    "name": "bench.BENCH_CUSTOMERS",
+    "is_internal": false,
+    "replication_factor": 3,
+    "partition_count": 1
+  },
+  {
+    "name": "bench.BENCH_LINES",
+    "is_internal": false,
+    "replication_factor": 3,
+    "partition_count": 1
+  },
+  {
+    "name": "bench.BENCH_ORDERS",
+    "is_internal": false,
+    "replication_factor": 3,
+    "partition_count": 1
+  },
+  {
+    "name": "customers_cur",
+    "is_internal": false,
+    "replication_factor": 3,
+    "partition_count": 6
+  },
+  {
+    "name": "dlq-lcc-6kywg1j",
+    "is_internal": false,
+    "replication_factor": 3,
+    "partition_count": 1
+  },
+  {
+    "name": "dlq-lcc-7ydpr5p",
+    "is_internal": false,
+    "replication_factor": 3,
+    "partition_count": 1
+  },
+  {
+    "name": "dlq-lcc-nv6y2xv",
+    "is_internal": false,
+    "replication_factor": 3,
+    "partition_count": 1
+  },
+  {
+    "name": "dlq-lcc-o36x3q9",
+    "is_internal": false,
+    "replication_factor": 3,
+    "partition_count": 1
+  },
+  {
+    "name": "lines_cur",
+    "is_internal": false,
+    "replication_factor": 3,
+    "partition_count": 6
+  },
+  {
+    "name": "order_doc",
+    "is_internal": false,
+    "replication_factor": 3,
+    "partition_count": 6
+  },
+  {
+    "name": "orders_cur",
+    "is_internal": false,
+    "replication_factor": 3,
+    "partition_count": 6
+  }
+]

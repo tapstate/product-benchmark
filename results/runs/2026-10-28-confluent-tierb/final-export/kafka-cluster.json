@@ -1,0 +1,18 @@
+{
+  "is_current": true,
+  "id": "lkc-57ymkpz",
+  "name": "cluster_0",
+  "type": "STANDARD",
+  "ingress_limit": 250,
+  "egress_limit": 750,
+  "storage": "Unlimited",
+  "cloud": "aws",
+  "region": "ap-east-1",
+  "availability": "low",
+  "status": "UP",
+  "deletion_protection": false,
+  "endpoint": "SASL_SSL://pkc-817wq.ap-east-1.aws.confluent.cloud:9092",
+  "rest_endpoint": "https://pkc-817wq.ap-east-1.aws.confluent.cloud:443",
+  "max_ecku": 10,
+  "topic_count": 12
+}

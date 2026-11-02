@@ -1,0 +1,124 @@
+{
+  "connector": {
+    "id": "lcc-6kywg1j",
+    "name": "bench-atlas-sink",
+    "status": "RUNNING",
+    "type": "sink"
+  },
+  "tasks": [
+    {
+      "task": 2,
+      "state": "RUNNING"
+    },
+    {
+      "task": 3,
+      "state": "RUNNING"
+    },
+    {
+      "task": 4,
+      "state": "RUNNING"
+    },
+    {
+      "task": 5,
+      "state": "RUNNING"
+    },
+    {
+      "task": 0,
+      "state": "RUNNING"
+    },
+    {
+      "task": 1,
+      "state": "RUNNING"
+    }
+  ],
+  "configs": [
+    {
+      "config": "input.key.format",
+      "value": "AVRO"
+    },
+    {
+      "config": "cloud.environment",
+      "value": "prod"
+    },
+    {
+      "config": "consumer.override.auto.offset.reset",
+      "value": "earliest"
+    },
+    {
+      "config": "doc.id.strategy",
+      "value": "FullKeyStrategy"
+    },
+    {
+      "config": "name",
+      "value": "bench-atlas-sink"
+    },
+    {
+      "config": "write.strategy",
+      "value": "ReplaceOneDefaultStrategy"
+    },
+    {
+      "config": "collection",
+      "value": "orders"
+    },
+    {
+      "config": "connection.host",
+      "value": "<redacted>"
+    },
+    {
+      "config": "kafka.api.key",
+      "value": "****************"
+    },
+    {
+      "config": "cloud.provider",
+      "value": "aws"
+    },
+    {
+      "config": "connector.class",
+      "value": "MongoDbAtlasSink"
+    },
+    {
+      "config": "database",
+      "value": "cr_confluent"
+    },
+    {
+      "config": "delete.on.null.values",
+      "value": "true"
+    },
+    {
+      "config": "input.data.format",
+      "value": "AVRO"
+    },
+    {
+      "config": "kafka.endpoint",
+      "value": "SASL_SSL://pkc-817wq.ap-east-1.aws.confluent.cloud:9092"
+    },
+    {
+      "config": "tasks.max",
+      "value": "6"
+    },
+    {
+      "config": "connection.password",
+      "value": "****************"
+    },
+    {
+      "config": "connection.user",
+      "value": "<redacted>"
+    },
+    {
+      "config": "kafka.api.secret",
+      "value": "****************"
+    },
+    {
+      "config": "kafka.auth.mode",
+      "value": "KAFKA_API_KEY"
+    },
+    {
+      "config": "kafka.region",
+      "value": "ap-east-1"
+    },
+    {
+      "config": "topics",
+      "value": "order_doc"
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "connector": {
+    "id": "lcc-81dvgq7",
+    "name": "bench-oracle-cdc",
+    "status": "DEGRADED",
+    "type": "source",
+    "trace": "The connector failed because it encountered a statement in the redo log that it cannot parse. You can set the 'behavior.on.unparsable.statement' configuration to 'log' to skip such statements and continue processing. Please note that doing so may result in skipping schema changes and/or change events.\n"
+  },
+  "tasks": [
+    {
+      "task": 0,
+      "state": "RUNNING"
+    },
+    {
+      "task": 1,
+      "state": "USER_ACTIONABLE_ERROR"
+    }
+  ],
+  "configs": [
+    {
+      "config": "output.data.value.format",
+      "value": "AVRO"
+    },
+    {
+      "config": "start.from",
+      "value": "snapshot"
+    },
+    {
+      "config": "table.topic.name.template",
+      "value": "bench.${tableName}"
+    },
+    {
+      "config": "connector.class",
+      "value": "OracleCdcSource"
+    },
+    {
+      "config": "kafka.endpoint",
+      "value": "SASL_SSL://pkc-817wq.ap-east-1.aws.confluent.cloud:9092"
+    },
+    {
+      "config": "name",
+      "value": "bench-oracle-cdc"
+    },
+    {
+      "config": "oracle.sid",
+      "value": "orcl"
+    },
+    {
+      "config": "table.inclusion.regex",
+      "value": ".*[.]C##TAPDATA[.]BENCH_(CUSTOMERS|ORDERS|LINES)"
+    },
+    {
+      "config": "tasks.max",
+      "value": "2"
+    },
+    {
+      "config": "kafka.api.key",
+      "value": "****************"
+    },
+    {
+      "config": "kafka.region",
+      "value": "ap-east-1"
+    },
+    {
+      "config": "oracle.port",
+      "value": "1521"
+    },
+    {
+      "config": "oracle.supplemental.log.level",
+      "value": "full"
+    },
+    {
+      "config": "output.data.key.format",
+      "value": "AVRO"
+    },
+    {
+      "config": "redo.log.topic.name",
+      "value": "bench-redo-log"
+    },
+    {
+      "config": "oracle.password",
+      "value": "****************"
+    },
+    {
+      "config": "oracle.server",
+      "value": "<redacted>"
+    },
+    {
+      "config": "cloud.environment",
+      "value": "prod"
+    },
+    {
+      "config": "cloud.provider",
+      "value": "aws"
+    },
+    {
+      "config": "kafka.api.secret",
+      "value": "****************"
+    },
+    {
+      "config": "kafka.auth.mode",
+      "value": "KAFKA_API_KEY"
+    },
+    {
+      "config": "key.template",
+      "value": "${primaryKeyStruct}"
+    },
+    {
+      "config": "oracle.username",
+      "value": "<redacted>"
+    },
+    {
+      "config": "emit.tombstone.on.delete",
+      "value": "false"
+    }
+  ]
+}
