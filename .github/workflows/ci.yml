@@ -3,6 +3,9 @@ on: [push, pull_request]
 jobs:
   test:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: cloud-oracle-to-atlas
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -10,6 +13,7 @@ jobs:
       - run: pip install -r requirements.txt
       - run: python -m unittest discover -s tests -t .
       - name: no credentials committed
+        working-directory: .
         run: |
-          ! git ls-files | grep -x 'bench.env'
-          ! git grep -nE 'mongodb\+srv://[^<]+:[^<@]+@' -- . ':!bench.env.example' ':!README.md'
+          ! git ls-files | grep -E '(^|/)bench\.env$'
+          ! git grep -nE 'mongodb\+srv://[^<]+:[^<@]+@' -- . ':!cloud-oracle-to-atlas/bench.env.example' ':!cloud-oracle-to-atlas/README.md'

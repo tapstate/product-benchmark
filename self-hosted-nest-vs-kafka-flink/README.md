@@ -296,7 +296,7 @@ layout above onto its real core pairs (`lscpu -e=CPU,CORE`) and edit the `cpuset
 A full pass takes about 1.5 hours for the 34k fixture on all engines, and about 8 to 9 hours for Tier B on all engines.
 
 ```text
-tapstate-nest-vs-kafka-flink-stack/
+self-hosted-nest-vs-kafka-flink/
   harness/nest_bench.py       seed, scenarios, load driver, lag probes, content check, sampling (both engines)
   rig/setup-host.sh           network, MongoDB replica set, load-driver container
   rig/run-tapstate.sh         Tapstate protocol (34k or Tier B)
@@ -314,7 +314,7 @@ tapstate-nest-vs-kafka-flink-stack/
 
 ```sh
 git clone https://github.com/tapstate/product-benchmark
-cd product-benchmark/tapstate-nest-vs-kafka-flink-stack
+cd product-benchmark/self-hosted-nest-vs-kafka-flink
 lscpu -e=CPU,CORE              # expect sibling pairs 0,4 / 1,5 / 2,6 / 3,7
 MONGO_IMAGE=mongo:7.0 sh rig/setup-host.sh
 ```
