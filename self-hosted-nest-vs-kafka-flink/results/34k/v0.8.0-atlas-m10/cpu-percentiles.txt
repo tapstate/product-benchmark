@@ -1,0 +1,16 @@
+cdc-10             nestbench-driver     n= 26 p50= 101.2 p95= 145.1 max= 146.2
+cdc-10             ts-v080-m10          n= 26 p50=  55.0 p95=  87.2 max= 101.5
+cdc-100            nestbench-driver     n= 25 p50=  89.3 p95= 140.9 max= 143.1
+cdc-100            ts-v080-m10          n= 25 p50=  81.2 p95=  96.6 max= 113.6
+cdc-150            nestbench-driver     n= 31 p50= 109.6 p95= 179.3 max= 185.0
+cdc-150            ts-v080-m10          n= 31 p50=  68.6 p95=  92.5 max= 101.2
+cdc-25             nestbench-driver     n= 26 p50= 100.9 p95= 154.8 max= 171.6
+cdc-25             ts-v080-m10          n= 26 p50=  60.8 p95=  84.7 max=  86.6
+cdc-50             nestbench-driver     n= 25 p50=  97.7 p95= 136.8 max= 143.1
+cdc-50             ts-v080-m10          n= 25 p50=  80.8 p95=  98.6 max= 102.1
+cdc-75             nestbench-driver     n= 26 p50=  91.2 p95= 157.4 max= 180.7
+cdc-75             ts-v080-m10          n= 26 p50=  70.5 p95=  88.0 max=  93.2
+setup              nestbench-driver     n=  2 p50= 165.0 p95= 165.0 max= 165.0
+setup              ts-v080-m10          n=  2 p50= 103.9 p95= 103.9 max= 103.9
+snapshot           nestbench-driver     n= 15 p50=  95.7 p95= 164.8 max= 164.8
+snapshot           ts-v080-m10          n= 15 p50= 187.6 p95= 202.6 max= 202.6
