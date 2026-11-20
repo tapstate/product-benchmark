@@ -1,0 +1,300 @@
+{
+  "prefix": "nb_1a48592b0c",
+  "label": "v080-34k-atlas-m10",
+  "fixture": "942",
+  "source": "nb_1a48592b0c_source",
+  "expected": {
+    "BENCH_CUSTOMERS": 1000,
+    "BENCH_LINES": 23000,
+    "BENCH_ORDERS": 10000
+  },
+  "snapshot": {
+    "scenario": "snapshot",
+    "pipeline": "nb_1a48592b0c_nest",
+    "rows": 34000,
+    "orders": 10000,
+    "documentHash": {
+      "documents": 10000,
+      "sha256": "6a9d1dc3d41e3ca9678a7ee2bb64ca753b6ec2253a398ab4659aa7d28a012033"
+    },
+    "secondsToAllRoots": 76.98832246100028,
+    "secondsToComplete": 77.59135054499984,
+    "secondsToVerified": 80.28615071200056,
+    "docsPerSecond": 128.88034464872996,
+    "inputRowsPerSecond": 438.19317180568186,
+    "rootsDocsPerSecond": 129.88982848750427,
+    "verify": {
+      "checked": 200,
+      "bad": 0,
+      "examples": []
+    },
+    "passed": true,
+    "store": {
+      "phases": [
+        "snapshot",
+        "snapshot-complete"
+      ],
+      "seconds": 75.00263185099993,
+      "units": 34000,
+      "source": {
+        "opcounters": {
+          "insert": 36,
+          "query": 58617,
+          "update": 48088,
+          "delete": 17,
+          "getmore": 62381,
+          "command": 120441
+        },
+        "total": 289580,
+        "perUnit": 8.517058823529412,
+        "transactions": {
+          "started": 11325,
+          "committed": 10040,
+          "aborted": 1283
+        },
+        "transactionsPerUnit": 0.2952941176470588
+      }
+    }
+  },
+  "cdc": {
+    "scenario": "cdc",
+    "pipeline": "nb_1a48592b0c_nest",
+    "steps": [
+      {
+        "rate": 10,
+        "achievedEventsPerSecond": 9.991583403471637,
+        "sent": 1199,
+        "seconds": 120.001,
+        "endLagSeconds": 0.974,
+        "lagGrowthSecondsPerSecond": -0.0027421993705608024,
+        "maxLagSeconds": 1.117,
+        "drainSeconds": 3.3130012770006942,
+        "held": true,
+        "store": {
+          "phases": [
+            "cdc-10"
+          ],
+          "seconds": 125.00320392499998,
+          "units": 1199,
+          "source": {
+            "opcounters": {
+              "insert": 2,
+              "query": 108798,
+              "update": 13127,
+              "delete": 90,
+              "getmore": 68636,
+              "command": 175403
+            },
+            "total": 366056,
+            "perUnit": 305.301084236864,
+            "transactions": {
+              "started": 15007,
+              "committed": 14647,
+              "aborted": 361
+            },
+            "transactionsPerUnit": 12.216013344453712
+          }
+        }
+      },
+      {
+        "rate": 25,
+        "achievedEventsPerSecond": 24.991666666666667,
+        "sent": 2999,
+        "seconds": 120,
+        "endLagSeconds": 1.244,
+        "lagGrowthSecondsPerSecond": 0.0007983333333333324,
+        "maxLagSeconds": 3.43,
+        "drainSeconds": 3.3937560149997807,
+        "held": true,
+        "store": {
+          "phases": [
+            "cdc-25"
+          ],
+          "seconds": 125.0070194939999,
+          "units": 2999,
+          "source": {
+            "opcounters": {
+              "insert": 8,
+              "query": 134177,
+              "update": 29238,
+              "delete": 24,
+              "getmore": 109932,
+              "command": 233300
+            },
+            "total": 506679,
+            "perUnit": 168.94931643881293,
+            "transactions": {
+              "started": 22437,
+              "committed": 21770,
+              "aborted": 668
+            },
+            "transactionsPerUnit": 7.259086362120707
+          }
+        }
+      },
+      {
+        "rate": 50,
+        "achievedEventsPerSecond": 49.99166666666667,
+        "sent": 5999,
+        "seconds": 120,
+        "endLagSeconds": 0.167,
+        "lagGrowthSecondsPerSecond": -0.003458888888888889,
+        "maxLagSeconds": 3.5,
+        "drainSeconds": 3.1067435510003634,
+        "held": true,
+        "store": {
+          "phases": [
+            "cdc-50"
+          ],
+          "seconds": 120.00240505700003,
+          "units": 5999,
+          "source": {
+            "opcounters": {
+              "insert": 89,
+              "query": 162700,
+              "update": 55075,
+              "delete": 77,
+              "getmore": 158586,
+              "command": 288301
+            },
+            "total": 664828,
+            "perUnit": 110.8231371895316,
+            "transactions": {
+              "started": 31925,
+              "committed": 30809,
+              "aborted": 1118
+            },
+            "transactionsPerUnit": 5.135689281546925
+          }
+        }
+      },
+      {
+        "rate": 75,
+        "achievedEventsPerSecond": 74.99166666666666,
+        "sent": 8999,
+        "seconds": 120,
+        "endLagSeconds": 0.634,
+        "lagGrowthSecondsPerSecond": 0.003812777777777776,
+        "maxLagSeconds": 3.517,
+        "drainSeconds": 3.1138597079998362,
+        "held": true,
+        "store": {
+          "phases": [
+            "cdc-75"
+          ],
+          "seconds": 125.00356326099973,
+          "units": 8999,
+          "source": {
+            "opcounters": {
+              "insert": 92,
+              "query": 163733,
+              "update": 70142,
+              "delete": 24,
+              "getmore": 181284,
+              "command": 308322
+            },
+            "total": 723597,
+            "perUnit": 80.40860095566174,
+            "transactions": {
+              "started": 34627,
+              "committed": 33026,
+              "aborted": 1602
+            },
+            "transactionsPerUnit": 3.6699633292588065
+          }
+        }
+      },
+      {
+        "rate": 100,
+        "achievedEventsPerSecond": 99.99166666666666,
+        "sent": 11999,
+        "seconds": 120,
+        "endLagSeconds": 1.62,
+        "lagGrowthSecondsPerSecond": 0.0030733333333333333,
+        "maxLagSeconds": 3.43,
+        "drainSeconds": 3.1436810889999833,
+        "held": true,
+        "store": {
+          "phases": [
+            "cdc-100"
+          ],
+          "seconds": 120.00555980799982,
+          "units": 11999,
+          "source": {
+            "opcounters": {
+              "insert": 84,
+              "query": 164131,
+              "update": 80233,
+              "delete": 78,
+              "getmore": 194257,
+              "command": 314390
+            },
+            "total": 753173,
+            "perUnit": 62.76964747062255,
+            "transactions": {
+              "started": 34940,
+              "committed": 32919,
+              "aborted": 2023
+            },
+            "transactionsPerUnit": 2.7434786232186017
+          }
+        }
+      },
+      {
+        "rate": 150,
+        "achievedEventsPerSecond": 149.98083684657811,
+        "sent": 18001,
+        "seconds": 120.022,
+        "endLagSeconds": 45.821,
+        "lagGrowthSecondsPerSecond": 0.40098204218115563,
+        "maxLagSeconds": 45.821,
+        "drainSeconds": 29.393126874999325,
+        "held": false,
+        "store": {
+          "phases": [
+            "cdc-150"
+          ],
+          "seconds": 150.00245491999976,
+          "units": 18001,
+          "source": {
+            "opcounters": {
+              "insert": 15,
+              "query": 207667,
+              "update": 99474,
+              "delete": 24,
+              "getmore": 135075,
+              "command": 255695
+            },
+            "total": 697950,
+            "perUnit": 38.77284595300261,
+            "transactions": {
+              "started": 35456,
+              "committed": 34289,
+              "aborted": 1170
+            },
+            "transactionsPerUnit": 1.9048386200766625
+          }
+        }
+      }
+    ],
+    "sustainedCeiling": 100,
+    "mix": {
+      "lines": 0.8,
+      "customers": 0.0,
+      "orders": 0.2
+    },
+    "verifyAfter": {
+      "checked": 200,
+      "bad": 0,
+      "examples": [],
+      "firstCheckBad": 0,
+      "secondsToSettle": 1.4471539839996694,
+      "documentHash": {
+        "documents": 10000,
+        "sha256": "bfc554f0ee0eb2524c657b65ccbacbd09a1b43e4d9ed06f3e339f422a6f46453"
+      }
+    },
+    "passed": true
+  },
+  "finishedUnix": 1795146386.0382671
+}

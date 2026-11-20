@@ -273,6 +273,41 @@ Read this run with care:
 - The remote `mongod` CPU was not sampled in this run.
 - The steps were `CDC_RATES=10,25,50 CDC_EXTRA=75,100,150,300,600,1000` on `rig/run-tapstate-external.sh`, 120 s each.
 
+### Release v0.8.0 against MongoDB Atlas
+
+On the same day we repeated the release v0.8.0 run with a managed MongoDB Atlas cluster in place of the self-hosted
+MongoDB host. As in the rest of this variant, the source, the target and Tapstate's configuration, change log and NEST
+state all live on that one cluster. The engine host, the image and the steps are the same as in the run above. The
+cluster was a three-node replica set on MongoDB 9.0.7, 1 to 2 ms away from the engine host by `ping`, and was run at
+two sizes.
+
+| 34k fixture, release v0.8.0 | Atlas M10 ([run](results/34k/v0.8.0-atlas-m10/summary.json)) | Atlas M40 ([run](results/34k/v0.8.0-atlas-m40/summary.json)) | Self-hosted MongoDB host ([run](results/34k/v0.8.0-external-mongo/summary.json)) |
+| --- | --- | --- | --- |
+| MongoDB, as reported by the server | 2 cores, 1.8 GB RAM, 3 nodes, 9.0.7 | 4 cores, 15.6 GB RAM, 3 nodes, 9.0.7 | 8 vCPU, 30 GiB RAM, 1 node, 7.0.45 |
+| Snapshot complete | 77.6 s | 65.3 s | 63.4 s |
+| Highest change rate held | 100/s | 150/s | 150/s |
+| End-to-end lag while holding | 0.2 to 1.6 s | 0.1 to 1.2 s | 0.3 to 1.1 s |
+| First step that did not hold | 150/s: lag 45.8 s, drained in 29 s | 200/s: lag 8.2 s, growing 0.06 s/s, drained in 3 s | 300/s: lag 101 s, drained in 78 s (200/s not run) |
+| Engine CPU p50 at the highest held step | 81 % of 200 % | 71 % of 200 % | 64 % of 200 % |
+| Content check after CDC | clean at the first check (200 / 0 bad, 1.4 s) | clean at the first check (200 / 0 bad, 1.6 s) | clean at the first check (200 / 0 bad, 1.2 s) |
+
+For this build, an M40 behaves like the self-hosted host: the same held rate and a snapshot within two seconds. Three
+nodes and MongoDB 9.0 were the same on M10 and M40, so the lower M10 result comes from the cluster's size. During the
+M10 run the Atlas console showed the primary at about 80 % of its two cores at the last steps, disk queue depth below
+1 and almost no disk reads. The M40 step at 200/s missed narrowly: the lag stayed under 10 s but grew slightly faster
+than the 0.05 s/s limit, which puts that ceiling near 190 changes/s. With the engine still under its two CPUs there,
+the limit at that point is the release build's store path, not MongoDB.
+
+Read these runs with care:
+
+- Each configuration is one run.
+- The self-hosted run had no 200/s step, so the M40 and the self-hosted host are shown to be equal only up to 150/s.
+- The Atlas figures in the paragraph above were read from the Atlas console for the M10 run. They are not in the
+  results folders, and the M40's console metrics were not recorded.
+- The NEST revamp has not been run against Atlas.
+- The Atlas runs used a copy of `rig/run-tapstate-external.sh` that takes a `mongodb+srv` URI and the cluster's
+  replica set name. It is not in this repository.
+
 ## Rig
 
 Both engines ran on AWS EC2 **m7i.2xlarge**: 8 vCPU (4 physical cores x 2 threads, Xeon Platinum 8488C), 30 GiB RAM,
@@ -486,6 +521,8 @@ The fields are:
 | [flink-2](results/34k/flink-2/summary.json) | 70.2 s | 2.0 s | 2.0 s | 2.2 s | 1.6 s | 4.7 s | no (60.7 s, about 303/s applied) |
 | [revamp, MongoDB on its own host](results/34k/revamp-external-mongo/summary.json) | 42.3 s | - | - | - | - | - | **1.4 s**; 1000/s no (60 s, about 720/s applied) |
 | [release v0.8.0, MongoDB on its own host](results/34k/v0.8.0-external-mongo/summary.json) | 63.4 s | 1.1 s | 0.3 s | 0.6 s | 0.9 s (75/s and 100/s also held, 0.6 s) | no (101.0 s) | not run |
+| [release v0.8.0, Atlas M10](results/34k/v0.8.0-atlas-m10/summary.json) | 77.6 s | 1.0 s | 1.2 s | 0.2 s | no (45.8 s; 75/s and 100/s held, 0.6 s and 1.6 s) | not run | not run |
+| [release v0.8.0, Atlas M40](results/34k/v0.8.0-atlas-m40/summary.json) | 65.3 s | 0.1 s | 1.0 s | 0.9 s | 1.2 s (75/s and 100/s also held; 200/s no, 8.2 s) | not run | not run |
 
 Cells show the end-of-step lag of each step that held, or "no" with the end lag for a step that did not. Steps are
 120 s each. Plain copy of the same 34,000 rows, as a reference: about 1,400 rows/s on Tapstate `main` and about
