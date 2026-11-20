@@ -1,0 +1,48 @@
+{
+  "scenario": "snapshot",
+  "pipeline": "nb_5a6e2d18fa_nest",
+  "rows": 34000,
+  "orders": 10000,
+  "documentHash": {
+    "documents": 10000,
+    "sha256": "6a9d1dc3d41e3ca9678a7ee2bb64ca753b6ec2253a398ab4659aa7d28a012033"
+  },
+  "secondsToAllRoots": 62.930302054000094,
+  "secondsToComplete": 63.352268343000105,
+  "secondsToVerified": 65.67302862999986,
+  "docsPerSecond": 157.84754455607296,
+  "inputRowsPerSecond": 536.681651490648,
+  "rootsDocsPerSecond": 158.90595903097784,
+  "verify": {
+    "checked": 200,
+    "bad": 0,
+    "examples": []
+  },
+  "passed": true,
+  "store": {
+    "phases": [
+      "snapshot",
+      "snapshot-complete"
+    ],
+    "seconds": 60.00289326999973,
+    "units": 34000,
+    "source": {
+      "opcounters": {
+        "insert": 29,
+        "query": 47002,
+        "update": 46444,
+        "delete": 0,
+        "getmore": 156,
+        "command": 41831
+      },
+      "total": 135462,
+      "perUnit": 3.984176470588235,
+      "transactions": {
+        "started": 9119,
+        "committed": 8233,
+        "aborted": 886
+      },
+      "transactionsPerUnit": 0.2421470588235294
+    }
+  }
+}
