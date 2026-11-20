@@ -2,4 +2,4 @@ bench.env
 __pycache__/
 *.pyc
 .venv/
-results/runs/*/screenshots/*.png.tmp
+cloud-oracle-to-atlas/results/runs/*/screenshots/*.png.tmp
