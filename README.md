@@ -22,6 +22,16 @@ What is here:
 | `infra/` | provisioning the shared Oracle 19c source |
 | `results/runs/` | evidence folders, one per run |
 
+## Benchmarks in this repository
+
+| Benchmark | Deployment | Compares | Where |
+|---|---|---|---|
+| Oracle to MongoDB Atlas, nested documents | managed cloud services | Tapstate Cloud, Confluent Cloud, Fivetran | this README, `docs/`, `bench/`, `vendors/`, `results/` |
+| MongoDB to MongoDB, nested documents | self-hosted, one 2 CPU / 8 GB engine | Tapstate NEST and a Debezium + Kafka + Flink stack | [`tapstate-nest-vs-kafka-flink-stack/`](tapstate-nest-vs-kafka-flink-stack/) |
+
+The two benchmarks are independent. Each has its own harness, rig and results, and the self-hosted
+one is documented in its own README. The rest of this page describes the managed-cloud benchmark.
+
 ## Quick start
 
 ```sh
