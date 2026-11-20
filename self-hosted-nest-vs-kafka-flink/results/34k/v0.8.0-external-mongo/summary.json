@@ -1,0 +1,336 @@
+{
+  "prefix": "nb_5a6e2d18fa",
+  "label": "v080-34k-extmongo-box2",
+  "fixture": "942",
+  "source": "nb_5a6e2d18fa_source",
+  "expected": {
+    "BENCH_CUSTOMERS": 1000,
+    "BENCH_LINES": 23000,
+    "BENCH_ORDERS": 10000
+  },
+  "snapshot": {
+    "scenario": "snapshot",
+    "pipeline": "nb_5a6e2d18fa_nest",
+    "rows": 34000,
+    "orders": 10000,
+    "documentHash": {
+      "documents": 10000,
+      "sha256": "6a9d1dc3d41e3ca9678a7ee2bb64ca753b6ec2253a398ab4659aa7d28a012033"
+    },
+    "secondsToAllRoots": 62.930302054000094,
+    "secondsToComplete": 63.352268343000105,
+    "secondsToVerified": 65.67302862999986,
+    "docsPerSecond": 157.84754455607296,
+    "inputRowsPerSecond": 536.681651490648,
+    "rootsDocsPerSecond": 158.90595903097784,
+    "verify": {
+      "checked": 200,
+      "bad": 0,
+      "examples": []
+    },
+    "passed": true,
+    "store": {
+      "phases": [
+        "snapshot",
+        "snapshot-complete"
+      ],
+      "seconds": 60.00289326999973,
+      "units": 34000,
+      "source": {
+        "opcounters": {
+          "insert": 29,
+          "query": 47002,
+          "update": 46444,
+          "delete": 0,
+          "getmore": 156,
+          "command": 41831
+        },
+        "total": 135462,
+        "perUnit": 3.984176470588235,
+        "transactions": {
+          "started": 9119,
+          "committed": 8233,
+          "aborted": 886
+        },
+        "transactionsPerUnit": 0.2421470588235294
+      }
+    }
+  },
+  "cdc": {
+    "scenario": "cdc",
+    "pipeline": "nb_5a6e2d18fa_nest",
+    "steps": [
+      {
+        "rate": 10,
+        "achievedEventsPerSecond": 9.991583403471637,
+        "sent": 1199,
+        "seconds": 120.001,
+        "endLagSeconds": 1.115,
+        "lagGrowthSecondsPerSecond": 0.006733277222689811,
+        "maxLagSeconds": 1.115,
+        "drainSeconds": 2.846186986000248,
+        "held": true,
+        "store": {
+          "phases": [
+            "cdc-10"
+          ],
+          "seconds": 120.00296600599995,
+          "units": 1199,
+          "source": {
+            "opcounters": {
+              "insert": 2,
+              "query": 106882,
+              "update": 13126,
+              "delete": 52,
+              "getmore": 1313,
+              "command": 88530
+            },
+            "total": 209905,
+            "perUnit": 175.06672226855713,
+            "transactions": {
+              "started": 13696,
+              "committed": 13276,
+              "aborted": 420
+            },
+            "transactionsPerUnit": 11.07256046705588
+          }
+        }
+      },
+      {
+        "rate": 25,
+        "achievedEventsPerSecond": 24.991666666666667,
+        "sent": 2999,
+        "seconds": 120,
+        "endLagSeconds": 0.337,
+        "lagGrowthSecondsPerSecond": 0.004393333333333334,
+        "maxLagSeconds": 3.073,
+        "drainSeconds": 2.8435848049994092,
+        "held": true,
+        "store": {
+          "phases": [
+            "cdc-25"
+          ],
+          "seconds": 120.00334957399991,
+          "units": 2999,
+          "source": {
+            "opcounters": {
+              "insert": 3,
+              "query": 137742,
+              "update": 29119,
+              "delete": 24,
+              "getmore": 3095,
+              "command": 100851
+            },
+            "total": 270834,
+            "perUnit": 90.3081027009003,
+            "transactions": {
+              "started": 20933,
+              "committed": 20382,
+              "aborted": 550
+            },
+            "transactionsPerUnit": 6.796265421807269
+          }
+        }
+      },
+      {
+        "rate": 50,
+        "achievedEventsPerSecond": 49.99166666666667,
+        "sent": 5999,
+        "seconds": 120,
+        "endLagSeconds": 0.562,
+        "lagGrowthSecondsPerSecond": 0.00021000000000000093,
+        "maxLagSeconds": 3.106,
+        "drainSeconds": 2.834538686000087,
+        "held": true,
+        "store": {
+          "phases": [
+            "cdc-50"
+          ],
+          "seconds": 120.00580084600006,
+          "units": 5999,
+          "source": {
+            "opcounters": {
+              "insert": 4,
+              "query": 187111,
+              "update": 56249,
+              "delete": 32,
+              "getmore": 6067,
+              "command": 120862
+            },
+            "total": 370325,
+            "perUnit": 61.73112185364227,
+            "transactions": {
+              "started": 32779,
+              "committed": 31821,
+              "aborted": 957
+            },
+            "transactionsPerUnit": 5.3043840640106685
+          }
+        }
+      },
+      {
+        "rate": 75,
+        "achievedEventsPerSecond": 74.99166666666666,
+        "sent": 8999,
+        "seconds": 120,
+        "endLagSeconds": 0.63,
+        "lagGrowthSecondsPerSecond": 0.0014533333333333343,
+        "maxLagSeconds": 3.053,
+        "drainSeconds": 2.8414405670000633,
+        "held": true,
+        "store": {
+          "phases": [
+            "cdc-75"
+          ],
+          "seconds": 120.00310949300001,
+          "units": 8999,
+          "source": {
+            "opcounters": {
+              "insert": 4,
+              "query": 189555,
+              "update": 72111,
+              "delete": 24,
+              "getmore": 9049,
+              "command": 127741
+            },
+            "total": 398484,
+            "perUnit": 44.28092010223358,
+            "transactions": {
+              "started": 36849,
+              "committed": 35736,
+              "aborted": 1115
+            },
+            "transactionsPerUnit": 3.9711079008778754
+          }
+        }
+      },
+      {
+        "rate": 100,
+        "achievedEventsPerSecond": 99.99166666666666,
+        "sent": 11999,
+        "seconds": 120,
+        "endLagSeconds": 0.55,
+        "lagGrowthSecondsPerSecond": -0.00042333333333333296,
+        "maxLagSeconds": 3.067,
+        "drainSeconds": 2.8363733799997135,
+        "held": true,
+        "store": {
+          "phases": [
+            "cdc-100"
+          ],
+          "seconds": 120.0041528239999,
+          "units": 11999,
+          "source": {
+            "opcounters": {
+              "insert": 4,
+              "query": 183592,
+              "update": 83789,
+              "delete": 24,
+              "getmore": 12046,
+              "command": 126629
+            },
+            "total": 406084,
+            "perUnit": 33.843153596133014,
+            "transactions": {
+              "started": 37300,
+              "committed": 36027,
+              "aborted": 1274
+            },
+            "transactionsPerUnit": 3.0025002083506958
+          }
+        }
+      },
+      {
+        "rate": 150,
+        "achievedEventsPerSecond": 149.9904167465271,
+        "sent": 17999,
+        "seconds": 120.001,
+        "endLagSeconds": 0.91,
+        "lagGrowthSecondsPerSecond": -0.0005333288889259242,
+        "maxLagSeconds": 3.073,
+        "drainSeconds": 2.8301666930001375,
+        "held": true,
+        "store": {
+          "phases": [
+            "cdc-150"
+          ],
+          "seconds": 120.0041450029994,
+          "units": 17999,
+          "source": {
+            "opcounters": {
+              "insert": 16,
+              "query": 146804,
+              "update": 99971,
+              "delete": 27,
+              "getmore": 17942,
+              "command": 110853
+            },
+            "total": 375613,
+            "perUnit": 20.868548252680704,
+            "transactions": {
+              "started": 32294,
+              "committed": 31161,
+              "aborted": 1134
+            },
+            "transactionsPerUnit": 1.7312628479359964
+          }
+        }
+      },
+      {
+        "rate": 300,
+        "achievedEventsPerSecond": 299.970836978711,
+        "sent": 36001,
+        "seconds": 120.015,
+        "endLagSeconds": 100.971,
+        "lagGrowthSecondsPerSecond": 1.0071241094863141,
+        "maxLagSeconds": 100.971,
+        "drainSeconds": 78.2696193390002,
+        "held": false,
+        "store": {
+          "phases": [
+            "cdc-300"
+          ],
+          "seconds": 200.00509025700012,
+          "units": 36001,
+          "source": {
+            "opcounters": {
+              "insert": 19,
+              "query": 231655,
+              "update": 180617,
+              "delete": 75,
+              "getmore": 30917,
+              "command": 174386
+            },
+            "total": 617669,
+            "perUnit": 17.156995639010027,
+            "transactions": {
+              "started": 48492,
+              "committed": 47517,
+              "aborted": 978
+            },
+            "transactionsPerUnit": 1.3198800033332407
+          }
+        }
+      }
+    ],
+    "sustainedCeiling": 150,
+    "mix": {
+      "lines": 0.8,
+      "customers": 0.0,
+      "orders": 0.2
+    },
+    "verifyAfter": {
+      "checked": 200,
+      "bad": 0,
+      "examples": [],
+      "firstCheckBad": 0,
+      "secondsToSettle": 1.2084390580002946,
+      "documentHash": {
+        "documents": 10000,
+        "sha256": "ab37b97e4040412482ea925f3b6b2b4d56e50b87d4c93addb56d25d1d9d1219a"
+      }
+    },
+    "passed": true
+  },
+  "finishedUnix": 1795144719.9562902
+}

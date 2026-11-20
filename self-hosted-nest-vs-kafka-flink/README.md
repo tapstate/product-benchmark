@@ -244,6 +244,35 @@ MongoDB on the engine host. Flink's limit there was sink round trips, with `mong
 MongoDB may move Flink too, or the longer round trip may slow it. Until Flink is run against the same external
 MongoDB, compare this variant only with the Tapstate row above it.
 
+### Release v0.8.0 against the same external MongoDB
+
+On 2026-11-20 we ran the public release image, `ghcr.io/tapstate/tapstate:0.8.0`, through the same variant. That is
+what a self-hosted user installs today. It does not contain the NEST revamp: the four pull requests were still open.
+The MongoDB host was the same one as above. The engine host was a second m7i.2xlarge of the same layout, idle apart
+from the benchmark.
+
+| 34k fixture, MongoDB on its own host | Release v0.8.0 ([run](results/34k/v0.8.0-external-mongo/summary.json)) | NEST revamp ([run](results/34k/revamp-external-mongo/summary.json)) |
+| --- | --- | --- |
+| Snapshot complete | 63.4 s | 42.3 s |
+| Highest change rate held | 150/s (10, 25, 50, 75, 100 and 150/s all held) | 600/s |
+| End-to-end lag while holding | 0.3 to 1.1 s | 1.4 s |
+| First step that did not hold | 300/s: lag 101 s at the end of the step, drained in 78 s | 1000/s: lag 60 s, drained in 43 s |
+| Engine CPU p50 (snapshot / highest held step / failed step) | 201 % / 64 % / 59 % of 200 % | 202 % / 106 % / 65 % of 200 % |
+| Content check after CDC | clean at the first check (200 / 0 bad, 1.2 s) | clean at the first check (200 / 0 bad, 1.5 s) |
+
+At 300/s the release build behaves the way the revamp does at 1000/s: the engine's CPU goes down, not up, so it is
+waiting on store calls. The 36,000 changes of that step were all applied 78 s after the load stopped, which is about
+180 changes/s averaged over the step and the drain.
+
+Read this run with care:
+
+- It is one run, and the ceiling lies somewhere between 150/s and 300/s. No step in between was run.
+- It is not a like-for-like comparison with the `main` rows in the summary. Those ran an older `main` with MongoDB on
+  the engine host, so the build and the MongoDB placement both differ.
+- The image tag `0.8.0` resolved to digest `sha256:34b653d4...6978`, built 2026-11-14 from revision `9fe7fcc2`.
+- The remote `mongod` CPU was not sampled in this run.
+- The steps were `CDC_RATES=10,25,50 CDC_EXTRA=75,100,150,300,600,1000` on `rig/run-tapstate-external.sh`, 120 s each.
+
 ## Rig
 
 Both engines ran on AWS EC2 **m7i.2xlarge**: 8 vCPU (4 physical cores x 2 threads, Xeon Platinum 8488C), 30 GiB RAM,
@@ -456,6 +485,7 @@ The fields are:
 | [flink-1](results/34k/flink-1/summary.json) | 43.7 s | 1.9 s | 2.0 s | 2.1 s | 2.6 s | 4.7 s | no (64.7 s, about 291/s applied) |
 | [flink-2](results/34k/flink-2/summary.json) | 70.2 s | 2.0 s | 2.0 s | 2.2 s | 1.6 s | 4.7 s | no (60.7 s, about 303/s applied) |
 | [revamp, MongoDB on its own host](results/34k/revamp-external-mongo/summary.json) | 42.3 s | - | - | - | - | - | **1.4 s**; 1000/s no (60 s, about 720/s applied) |
+| [release v0.8.0, MongoDB on its own host](results/34k/v0.8.0-external-mongo/summary.json) | 63.4 s | 1.1 s | 0.3 s | 0.6 s | 0.9 s (75/s and 100/s also held, 0.6 s) | no (101.0 s) | not run |
 
 Cells show the end-of-step lag of each step that held, or "no" with the end lag for a step that did not. Steps are
 120 s each. Plain copy of the same 34,000 rows, as a reference: about 1,400 rows/s on Tapstate `main` and about
